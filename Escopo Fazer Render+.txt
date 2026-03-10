@@ -1,0 +1,1696 @@
+﻿PARTE 1 — VISÃO E POSICIONAMENTO
+1.1. O problema real que o Fazer Render+ resolve
+
+
+DADOS DO BRASIL (2026):
+├── 79,5% dos lares brasileiros endividados (CNC, jan/2026)
+├── 91% dos brasileiros não receberam educação financeira na infância
+├── Apenas 5 milhões de CPFs ativos na B3 (de 220M de pessoas)
+├── Poupança ainda é o "investimento" de 70%+ da população
+└── Crença devastadora: "Investir é só pra quem tem muito dinheiro"
+O Fazer Render+ ataca esta crença diretamente, com uma plataforma que:
+
+Fala a língua do brasileiro comum
+Começa com R$0 de capital (educação antes de dinheiro)
+Usa IA como guia pessoal — não como "guru de bolsa"
+Baseia tudo em estratégias validadas por décadas nos melhores livros e investidores do mundo
+Entrega prática via simulação antes de qualquer risco real
+1.2. Proposta de valor (por público)
+
+
+
+Quem é	O que sente	O que o Fazer Render+ entrega
+Assalariado R$2k–5k	"Sobra pouco, não vale a pena investir"	Trilha de reserva + hábito + prova de que R$50/mês fazem diferença
+Jovem 20–30 anos	"É complicado demais"	Linguagem simples, gamificação, IA explicadora
+Mãe/pai de família	"Preciso garantir o futuro dos filhos"	Planejamento por objetivos, simulações de longo prazo
+Endividado	"Primeiro quitar, depois investir"	Módulo de dívidas + rota de saída + início simultâneo da reserva
+Interessado mas perdido	"Não sei por onde começar"	Onboarding inteligente + plano personalizado em 5 minutos
+PARTE 2 — TECNOLOGIA: PWA (Progressive Web App)
+2.1. Por que PWA é a escolha certa para o Fazer Render+
+Você optou por PWA — excelente decisão estratégica e técnica. Veja o porquê:
+
+
+
+PWA vs. APP NATIVO — COMPARATIVO
+
+CUSTO
+├── App nativo (iOS + Android): R$80k–R$200k+ de desenvolvimento
+└── PWA: R$25k–R$60k (um único codebase para tudo)
+
+DISTRIBUIÇÃO
+├── App nativo: precisa publicar na App Store e Play Store
+│   (revisão de Apple = dias/semanas; taxas de 15–30%)
+└── PWA: instalável diretamente pelo navegador, sem aprovação de loja
+
+ATUALIZAÇÃO
+├── App nativo: usuário precisa atualizar manualmente
+└── PWA: atualiza automaticamente no servidor (usuário sempre na versão nova)
+
+FUNCIONALIDADES (2025/2026)
+├── Instalação na tela inicial: ✅ Android e iOS
+├── Funcionamento offline: ✅ (Service Workers)
+├── Notificações push: ✅ Android completo | iOS a partir do 16.4+
+├── Acesso à câmera: ✅
+├── GPS e sensores: ✅
+└── Performance: próximo ao nativo em dispositivos modernos
+2.2. Como o usuário instala o Fazer Render+ (fluxo simples)
+
+
+ANDROID (Chrome / Samsung Internet)
+├── Usuário acessa fazerrender.com.br
+├── Banner automático: "Adicionar Fazer Render+ à tela inicial"
+├── Toca em "Instalar" → ícone aparece na tela principal
+└── Abre como app: sem barra do navegador, tela cheia, splash screen
+
+iOS (Safari — iPhone/iPad)
+├── Usuário acessa fazerrender.com.br no Safari
+├── Toca no ícone de compartilhar (caixinha com seta)
+├── "Adicionar à Tela de Início"
+└── Abre como app idêntico ao Android
+Instrução no onboarding: na primeira vez, o app guia o usuário passo a passo para instalar — com animação e seta mostrando exatamente onde clicar.
+
+2.3. Stack tecnológica (PWA + IA + Backend)
+
+
+FRONTEND (PWA)
+├── Next.js 14 (App Router + SSR)
+│   ├── SEO nativo (fundamental para aquisição orgânica)
+│   ├── Performance (Core Web Vitals = PWA aprovado pelo Google)
+│   └── Server Components (carregamento ultrarrápido)
+├── Tailwind CSS (design system)
+├── Framer Motion (animações suaves)
+├── Workbox (Service Worker — cache offline)
+├── Web App Manifest (instalação como app)
+└── Recharts / TradingView Widgets (gráficos)
+
+BACKEND
+├── Node.js + NestJS (API REST estruturada)
+├── PostgreSQL (banco principal)
+├── Redis (cache de dados de mercado, sessões)
+├── BullMQ (filas: alertas, e-mails, notificações)
+└── Prisma ORM (acesso ao banco)
+
+IA ENGINE
+├── OpenAI GPT-4o (motor do chat + geração de textos)
+├── LangChain (orquestração de RAG + contexto persistente)
+├── pgvector (banco vetorial embutido no PostgreSQL)
+│   └── Armazena a KB curada para busca semântica
+└── Python FastAPI (microserviço de recomendação/carteiras-modelo)
+
+DADOS FINANCEIROS (APIs — todas gratuitas ou low-cost)
+├── Banco Central do Brasil API (Selic, IPCA, CDI — oficial)
+├── BRAPI.dev (ações B3, FIIs, ETFs — gratuita)
+├── Alpha Vantage (ações internacionais — freemium)
+└── CoinGecko (cripto — gratuita)
+
+NOTIFICAÇÕES
+├── Web Push API (push nativo via Service Worker)
+└── SendGrid (e-mails transacionais e boletim semanal)
+
+PAGAMENTOS
+├── Stripe (cartão de crédito, assinatura recorrente)
+├── Pix (via Gerencianet/EFI Bank)
+└── Hotmart/Kiwify (infoprodutos avulsos)
+
+INFRAESTRUTURA
+├── Vercel (deploy do Next.js — CDN global, HTTPS automático)
+├── Railway (backend Node.js + PostgreSQL)
+├── Cloudflare (proteção DDoS, cache, analytics)
+└── AWS S3 / Cloudflare R2 (vídeos e materiais)
+
+ANALYTICS
+├── Mixpanel (funil, retenção, comportamento)
+├── GA4 (tráfego web)
+└── Sentry (monitoramento de erros em tempo real)
+PARTE 3 — BIBLIOTECA-BASE DA IA (Knowledge Base Canônica)
+3.1. O que significa "baseada em livros e investidores renomados"
+Toda resposta da IA, toda explicação nas aulas e toda lógica das carteiras-modelo é fundamentada em um corpo de conhecimento curado e estruturado — a KB Fazer Render+. Não é "opinião da IA". É síntese de décadas de sabedoria validada.
+
+3.2. Os Mestres e suas contribuições ao Fazer Render+
+🏛️ ESCOLA 1 — VALUE INVESTING (Valor Intrínseco)
+
+
+BENJAMIN GRAHAM (1894–1976) — "O Pai do Value Investing"
+Obras: "O Investidor Inteligente" (1949), "Security Analysis" (1934)
+─────────────────────────────────────────────────────────────
+PRINCÍPIOS INCORPORADOS AO FAZER RENDER+:
+├── Margem de Segurança: "Nunca pague mais do que o valor justo"
+│   → Aplicado: ensinar a não comprar ação na euforia
+├── Mr. Market: mercado é bipolar, não sábio
+│   → Aplicado: queda de preço ≠ perda; pode ser oportunidade
+├── Investidor defensivo vs. empreendedor
+│   → Aplicado: perfil do usuário no onboarding
+└── "Na bolsa, o maior inimigo do investidor é ele mesmo"
+    → Aplicado: módulo de psicologia financeira
+
+WARREN BUFFETT (1930–) — "O Oráculo de Omaha"
+Discípulo de Graham, maior investidor de todos os tempos
+Obras/fontes: Cartas anuais Berkshire Hathaway, livro "A Bola de Neve"
+─────────────────────────────────────────────────────────────
+PRINCÍPIOS INCORPORADOS:
+├── "Invista em negócios que você entende"
+│   → Aplicado: ensiná-lo a analisar setores antes de empresas
+├── "Nosso período preferido para manter uma ação é para sempre"
+│   → Aplicado: visão de longo prazo como padrão
+├── "Seja ganancioso quando os outros têm medo"
+│   → Aplicado: módulo de comportamento em crises
+├── Regras 1 e 2: "Não perca dinheiro" / "Lembre da regra 1"
+│   → Aplicado: gestão de risco como pilar
+└── "Preço é o que você paga, valor é o que você recebe"
+    → Aplicado: lógica das carteiras-modelo
+
+CHARLIE MUNGER (1924–2023) — "O Sócio Silencioso"
+─────────────────────────────────────────────────────────────
+PRINCÍPIOS:
+├── Modelos mentais: "Ter um arsenal de formas de pensar"
+│   → Aplicado: módulo de tomada de decisão financeira
+├── Inversão: "Diga-me onde vou morrer para que eu evite o lugar"
+│   → Aplicado: "erros a evitar" em cada aula
+└── "A primeira regra é ser racionalmente curioso"
+    → Tom do chat da IA: sempre explicar o "porquê"
+🏛️ ESCOLA 2 — INDEXAÇÃO E CUSTOS BAIXOS
+
+
+JOHN BOGLE (1929–2019) — Fundador da Vanguard
+Obras: "O Guia de Investimento em Ações" (Common Sense on Mutual Funds)
+─────────────────────────────────────────────────────────────
+PRINCÍPIOS:
+├── "Os custos importam mais do que qualquer outra coisa"
+│   → Aplicado: comparativo de taxas em cada aula de produto
+├── "Não tente encontrar a agulha no palheiro — compre o palheiro"
+│   → Aplicado: trilha de ETFs, indexação como estratégia
+├── Rebalanceamento disciplinado
+│   → Aplicado: rotina de revisão de carteira
+└── Simplicidade: "A complexidade é inimiga do retorno"
+    → Aplicado: carteiras-modelo com no máximo 4 blocos
+
+BURTON MALKIEL — "Um Passeio Aleatório por Wall Street"
+─────────────────────────────────────────────────────────────
+PRINCÍPIOS:
+└── Hipótese de mercado eficiente aplicada ao iniciante:
+    "Você provavelmente não vai bater o mercado — então invista nele"
+    → Aplicado: por que ETFs fazem sentido para maioria
+🏛️ ESCOLA 3 — CRESCIMENTO E QUALIDADE
+
+
+PETER LYNCH (1944–) — Gestor do Magellan Fund (29% a.a. por 13 anos)
+Obras: "One Up on Wall Street", "Beating the Street"
+─────────────────────────────────────────────────────────────
+PRINCÍPIOS:
+├── "Invista no que você conhece" (invest in what you know)
+│   → Aplicado: exercício "liste empresas que você usa todo dia"
+├── Classificação de ações: stalwarts, fast growers, turnarounds
+│   → Aplicado: framework para iniciante entender tipos de empresa
+├── "Oito meses em cada dez, qualquer coisa na bolsa é entediante"
+│   → Aplicado: mensagem de normalização da espera
+└── PEG Ratio: P/L ajustado ao crescimento
+    → Aplicado: indicador ensinado de forma visual
+
+PHILIP FISHER (1907–2004) — "O pai do Investing de crescimento"
+Obra: "Ações Comuns, Lucros Extraordinários"
+─────────────────────────────────────────────────────────────
+PRINCÍPIOS:
+├── "Scuttlebutt": pesquisar empresa antes de investir
+│   → Aplicado: checklist de pesquisa de empresa para o usuário
+└── Concentração em poucas empresas de qualidade
+    → Aplicado: debate qualidade vs. quantidade na carteira
+🏛️ ESCOLA 4 — ALOCAÇÃO, MACRO E RISCO
+
+
+RAY DALIO (1949–) — Fundador da Bridgewater
+Obras: "Princípios", "A Template for Understanding Big Debt Crises"
+─────────────────────────────────────────────────────────────
+PRINCÍPIOS:
+├── "All Weather Portfolio": carteira para qualquer cenário
+│   → Aplicado: carteiras-modelo por cenário econômico
+├── Diversificação real: "O Santo Graal dos investimentos"
+│   → Aplicado: módulo de diversificação por classe de ativo
+├── "Entenda os ciclos econômicos"
+│   → Aplicado: módulo de macro para iniciantes (Selic, inflação)
+└── Meditação + disciplina emocional
+    → Aplicado: módulo de psicologia e rotina
+
+NASSIM TALEB — "A Lógica do Cisne Negro"
+─────────────────────────────────────────────────────────────
+PRINCÍPIOS:
+└── Eventos raros e imprevisíveis existem — reserve-se para eles
+    → Aplicado: reserva de emergência como proteção de "cauda"
+🏛️ ESCOLA 5 — BRASIL: MESTRES LOCAIS
+
+
+LUIZ BARSI (1939–) — "O Warren Buffett brasileiro"
+─────────────────────────────────────────────────────────────
+PRINCÍPIOS:
+├── Dividendos como filosofia de vida: viver de renda passiva
+│   → Aplicado: trilha de FIIs e ações de dividendos
+├── "Compre ações de empresas sólidas e espere"
+│   → Aplicado: estratégia buy and hold brasileira
+└── "A bolsa tem mais vítimas do que a guerra"
+    → Aplicado: módulo de erros clássicos
+
+DÉCIO BAZIN — "Faça Fortuna com Ações"
+─────────────────────────────────────────────────────────────
+PRINCÍPIOS:
+├── Yield mínimo de 6% como critério de seleção
+│   → Aplicado: filtro de seleção na trilha de dividendos
+└── Consistência de dividendos ao longo dos anos
+    → Aplicado: checklist de análise de empresa
+
+GUSTAVO CERBASI — "Casais Inteligentes Enriquecem Juntos"
+─────────────────────────────────────────────────────────────
+PRINCÍPIOS:
+├── Planejamento financeiro familiar
+│   → Aplicado: onboarding com objetivos familiares
+└── "Não é quanto você ganha, é quanto você guarda"
+    → Aplicado: mensagem central do produto
+🏛️ ESCOLA 6 — PSICOLOGIA DO INVESTIDOR
+
+
+DANIEL KAHNEMAN — "Rápido e Devagar"
+RICHARD THALER — "Nudge" (Nobel de Economia 2017)
+MORGAN HOUSEL — "A Psicologia Financeira"
+─────────────────────────────────────────────────────────────
+PRINCÍPIOS:
+├── Aversão à perda: "Perder R$100 dói mais do que ganhar R$100 alegra"
+│   → Aplicado: módulo de comportamento em quedas do mercado
+├── Viés de ancoragem, excesso de confiança, herding
+│   → Aplicado: quiz de vieses cognitivos (aula interativa)
+├── "Poupança não é disciplina — é design do ambiente"
+│   → Aplicado: estratégia de automação de aportes
+└── "Tempo no mercado bate timing de mercado"
+    → Aplicado: simulação mostrando impacto do tempo
+PARTE 4 — TRILHAS DE CONHECIMENTO (Currículo Completo)
+4.1. Estrutura Geral (7 Trilhas + Módulo Especial)
+
+
+FREE (Gratuito)
+└── TRILHA 0 — Base Financeira (fundamentos comportamentais)
+└── TRILHA 1 — Renda Fixa Brasil (nível iniciante)
+
+PLUS (R$29,90/mês)
+└── TRILHA 2 — Fundos Imobiliários — FIIs (iniciante → intermediário)
+└── TRILHA 3 — Renda Fixa Avançada e Montagem de Carteira
+
+PREMIUM (R$59,90/mês)
+└── TRILHA 4 — Ações Brasil (iniciante → intermediário)
+└── TRILHA 5 — Ações Internacionais / Globais (ETFs, BDRs, ADRs)
+└── TRILHA 6 — Portfólio Completo e Liberdade Financeira
+└── MÓDULO ESPECIAL — Renda Extra e Aceleração Patrimonial
+📚 TRILHA 0 — BASE FINANCEIRA (FREE)
+"Antes de investir, entenda o jogo"
+
+Referências: Morgan Housel, Daniel Kahneman, Gustavo Cerbasi, Richard Thaler
+
+
+
+
+#	Aula	Formato	Exercício
+0.1	Por que você nunca aprendeu sobre dinheiro (e não é sua culpa)	Vídeo 6min	Reflexão guiada
+0.2	A diferença entre rico e endividado começa na cabeça	Texto + Infográfico	Quiz de vieses
+0.3	Quanto você ganha x quanto chega ao fim do mês	Ferramenta interativa	Diagnóstico financeiro
+0.4	O poder devastador dos juros compostos (a favor e contra você)	Simulador animado	Projeção pessoal
+0.5	A regra dos 50-30-20 adaptada à realidade brasileira	Vídeo 5min	Montar orçamento
+0.6	Como sair das dívidas e começar ao mesmo tempo	Guia passo a passo	Plano de saída de dívidas
+0.7	Por que R$50/mês já é suficiente para começar	Simulador "bola de neve"	Definir aporte inicial
+0.8	Automação: deixar o dinheiro trabalhar sem depender de força de vontade	Vídeo 7min	Criar débito automático virtual
+0.9	Seu primeiro objetivo financeiro (real, mensurável, com prazo)	Ferramenta de metas	Definir meta #1
+0.10	Teste de perfil de investidor + Plano de Jornada personalizado	Quiz interativo	Receber plano personalizado
+Badge: 🌱 "Semente Plantada"
+
+📚 TRILHA 1 — RENDA FIXA BRASIL (FREE)
+"Seu dinheiro seguro e rendendo mais do que a poupança"
+
+Referências: Banco Central, Tesouro Nacional, conceitos de Graham (segurança de capital), Bogle (custo e simplicidade)
+
+
+
+
+#	Aula	Formato	Exercício
+1.1	O que é renda fixa e por que a poupança é a pior opção	Vídeo 8min + comparativo animado	Calcular quanto perdeu na poupança
+1.2	Selic, CDI, IPCA: o trio que governa seus investimentos	Infográfico interativo	Quiz de conceitos
+1.3	Tesouro Selic: o melhor amigo da reserva de emergência	Vídeo 6min	Simular Tesouro Selic
+1.4	Tesouro IPCA+: proteger o poder de compra no longo prazo	Vídeo + simulador de inflação	Simular em 3 cenários
+1.5	O que é marcação a mercado (sem entrar em pânico)	Animação explicativa	Quiz de comportamento
+1.6	CDB: como comparar e escolher o melhor	Ferramenta comparadora	Comparar 3 CDBs
+1.7	LCI e LCA: quando a isenção de IR realmente vale a pena	Calculadora de equivalência	Calcular CDB equivalente
+1.8	FGC: o seguro dos seus investimentos (e seus limites)	Texto + quiz	Calcular cobertura
+1.9	Tributação da renda fixa: tabela regressiva e IR na prática	Guia visual	Calcular IR de um resgate
+1.10	Montando sua primeira carteira de renda fixa com R$500	Projeto guiado	Carteira no simulador
+Badge: 💰 "Poupança? Nunca mais."
+
+📚 TRILHA 2 — FUNDOS IMOBILIÁRIOS (PLUS — R$29,90)
+"Seja dono de imóveis sem ter que comprar um"
+
+Referências: Barsi (dividendos), Buffett (qualidade de ativos), Bazin (yield), livro "FIIs do Zero ao Avançado"
+
+
+
+
+#	Aula	Formato	Exercício
+2.1	O que são FIIs: como ter renda de aluguel com R$100	Vídeo 8min + analogia visual	Quiz introdutório
+2.2	Tipos de FIIs: Tijolo, Papel e Híbridos — diferenças e riscos	Mapa visual interativo	Classificar 10 FIIs reais
+2.3	Dividend Yield: como interpretar sem cair em armadilhas	Calculadora de DY	Analisar 3 FIIs
+2.4	Vacância, inadimplência e gestão — o que realmente importa	Vídeo 7min	Checklist de análise
+2.5	P/VP: comprando cota barata ou cara?	Ferramenta de comparação	Avaliar FIIs por P/VP
+2.6	FIIs de Lajes Corporativas x Galpões x Shopping x Papel	Vídeo comparativo	Montar carteira por tipo
+2.7	Como analisar o relatório gerencial de um FII (sem ser analista)	Guia passo a passo	Ler relatório real
+2.8	Isenção de IR nos dividendos: a grande vantagem dos FIIs	Calculadora comparativa	Simular renda mensal
+2.9	Efeito da Selic nos FIIs: quando comprar e por quê	Vídeo 9min + gráfico histórico	Analisar ciclo de juros
+2.10	Carteira de FIIs para iniciantes: da teoria à prática	Projeto final	Montar carteira no simulador
+Badge: 🏢 "Proprietário Inteligente"
+
+📚 TRILHA 3 — RENDA FIXA AVANÇADA E CARTEIRA COMPLETA (PLUS)
+"Da reserva ao portfólio estratégico"
+
+Referências: Ray Dalio (All Weather), Bogle (alocação), livro "Os Axiomas de Zurique"
+
+
+
+
+#	Aula	Formato	Exercício
+3.1	Debêntures, CRI e CRA: renda fixa de alta rentabilidade	Vídeo + guia de riscos	Comparar com CDB
+3.2	Fundos de Renda Fixa: quando fazem sentido (e quando não)	Análise de taxas	Calcular custo real
+3.3	Diversificação real: não é só ter vários produtos	Simulador de carteira	Testar correlações
+3.4	O conceito "All Weather" aplicado à renda fixa brasileira	Vídeo + modelo visual	Montar carteira por cenário
+3.5	Prazos e objetivos: curto, médio e longo prazo em harmonia	Ferramenta de planejamento	Alinhar ativos a objetivos
+3.6	Rebalanceamento: manter a carteira no prumo sem emoção	Guia prático	Simular rebalanceamento
+3.7	Inflação alta: como proteger o patrimônio	Vídeo + calculadora	Cenário de inflação 10%
+3.8	Imposto de Renda: declaração simplificada para o investidor	Guia passo a passo	Checklist de IR
+3.9	Previdência privada: PGBL vs. VGBL vs. investimento direto	Calculadora comparativa	Simular 3 estratégias
+3.10	Projeto Final: Portfólio de Renda Fixa + FIIs para sua vida	Mentoria IA + simulação	Carteira personalizada
+Badge: 🎯 "Arquiteto Financeiro"
+
+📚 TRILHA 4 — AÇÕES BRASIL (PREMIUM — R$59,90)
+"Seja sócio das melhores empresas do Brasil"
+
+Referências: Graham ("O Investidor Inteligente"), Buffett (Cartas Berkshire), Barsi, Bazin ("Faça Fortuna com Ações"), Lynch ("One Up on Wall Street"), Fisher ("Ações Comuns, Lucros Extraordinários")
+
+
+
+
+#	Aula	Formato	Exercício
+4.1	O que significa ser sócio de uma empresa (não especulador)	Vídeo + analogia	Identificar empresas do dia a dia
+4.2	Como a bolsa funciona: pregão, ordens, lotes e fracionado	Simulação animada	Simular primeira compra
+4.3	Análise Fundamentalista: os 6 indicadores que o iniciante precisa	Infográfico interativo	Analisar 1 empresa real
+4.4	P/L, P/VP, ROE, Dividend Yield, Dívida/EBITDA: sem medo	Calculadora de indicadores	Comparar 3 empresas
+4.5	Como ler o balanço patrimonial de forma simples	Guia visual	Ler balanço de 1 empresa
+4.6	Estratégia de Dividendos (Bazin + Barsi): viver de renda	Vídeo 10min + carteira-modelo	Selecionar pagadoras
+4.7	Estratégia Buy & Hold (Buffett): comprar e não vender	Vídeo + simulação de 20 anos	Montar carteira B&H
+4.8	Small Caps vs. Blue Chips: risco e potencial	Comparativo histórico	Alocar por perfil
+4.9	Erros fatais na bolsa: timing, FOMO, manada e alavancagem	Vídeo + cases reais	Quiz de comportamento
+4.10	Carteira de ações BR para iniciante: de R$500 a R$5.000	Projeto guiado	Carteira completa no simulador
+Badge: 📈 "Sócio Inteligente"
+
+📚 TRILHA 5 — AÇÕES INTERNACIONAIS (PREMIUM)
+"Invista no mundo sem sair do Brasil"
+
+Referências: Bogle (ETFs/indexação), Buffett (BRK.A), Ray Dalio (diversificação global), livro "Little Book of Common Sense Investing"
+
+
+
+
+#	Aula	Formato	Exercício
+5.1	Por que investir fora do Brasil (dolarização do patrimônio)	Vídeo 8min + gráfico histórico	Calcular % do câmbio
+5.2	ETFs: comprar o mercado inteiro de uma vez	Animação explicativa	Simular IVVB11 vs Ibovespa
+5.3	S&P 500, Nasdaq, Dow Jones: o que são e como investir	Infográfico interativo	Comparar índices
+5.4	BDRs: ações americanas na B3 (como comprar Apple, Google)	Guia prático	Simular compra de BDR
+5.5	Contas internacionais: Avenue, Stake, Interactive Brokers	Comparativo de plataformas	Escolher plataforma por perfil
+5.6	Risco cambial: aliado ou inimigo?	Calculadora de câmbio	Simular com variação do dólar
+5.7	ETFs temáticos: tecnologia, saúde, ESG, mercados emergentes	Mapa de ETFs	Montar carteira temática
+5.8	REITs: os FIIs americanos com dividendos em dólar	Vídeo + comparativo	Comparar REIT vs FII
+5.9	Tributação de investimentos no exterior (carnê-leão, GCAP)	Guia de IR	Simular declaração
+5.10	Carteira global para o brasileiro: da teoria à prática	Projeto final	Carteira global no simulador
+Badge: 🌍 "Investidor Global"
+
+📚 TRILHA 6 — PORTFÓLIO COMPLETO E LIBERDADE FINANCEIRA (PREMIUM)
+"Unindo tudo: sua rota para o primeiro milhão"
+
+Referências: Dalio (All Weather), Buffett + Munger (sabedoria integrada), Morgan Housel ("A Psicologia Financeira"), Ramit Sethi ("I Will Teach You To Be Rich")
+
+
+
+
+#	Aula	Formato	Exercício
+6.1	O que é liberdade financeira de verdade (não é só ter dinheiro)	Vídeo + reflexão guiada	Definir "número da liberdade"
+6.2	A Regra dos 4%: calcular quanto você precisa para se aposentar	Calculadora interativa	Calcular seu número
+6.3	Montando o portfólio completo (RF + FIIs + Ações BR + Global)	Ferramenta de alocação	Carteira integrada
+6.4	Rebalanceamento anual: manter a estratégia no longo prazo	Simulador de 30 anos	Simular com aportes mensais
+6.5	Proteção do patrimônio: seguros, previdência e diversificação extrema	Guia de proteção	Checklist de proteção
+6.6	Psicologia em crises: 2008, 2020, e o que os mestres fizeram	Documentário interativo	Teste de comportamento em crise
+6.7	Impostos e planejamento fiscal inteligente	Guia avançado de IR	Plano fiscal anual
+6.8	Quando e como mudar de estratégia (sem destruir o portfólio)	Vídeo + casos práticos	Simular mudança de alocação
+6.9	Vivendo de renda: FIIs + ações + renda fixa gerando renda passiva	Calculadora de independência	Projeção de renda passiva
+6.10	Seu plano de 5 anos: do primeiro aporte ao primeiro milhão	Projeto final integrado	Plano personalizado completo
+Badge: 🏆 "Arquiteto da Liberdade"
+
+📚 MÓDULO ESPECIAL — RENDA EXTRA E ACELERAÇÃO PATRIMONIAL (PREMIUM)
+"Acelere seus aportes ganhando mais"
+
+Referências: Robert Kiyosaki ("Pai Rico, Pai Pobre"), Tim Ferriss ("Trabalhe 4 Horas por Semana"), Grant Cardone
+
+
+
+ATENÇÃO: Este módulo sugere estratégias EDUCATIVAS de renda extra
+para acelerar aportes. NÃO é "enriquecimento rápido".
+É: "mais dinheiro para investir com mais consistência".
+
+
+
+#	Dica / Mini-aula	Formato
+E.1	Freelance digital: habilidades que geram renda extra imediata	Cards + links de plataformas
+E.2	Vender o que você já sabe: conhecimento como produto	Guia de validação
+E.3	Monetizar hobbies sem virar empresa	Exemplos práticos
+E.4	Cashback, milhas e benefícios bancários como "renda passiva de consumo"	Calculadora
+E.5	Aluguel de espaço, carro e bens: economia compartilhada	Comparativo de plataformas
+E.6	FGTS como investimento estratégico	Calculadora de oportunidade
+E.7	Como negociar aumento ou promoção (a renda extra mais subestimada)	Roteiro de negociação
+E.8	Renda extra → aporte extra: automatizar o ciclo de crescimento	Ferramenta de metas
+PARTE 5 — IA TUTOR: "FAZER RENDER AI" (Escopo Técnico e Comportamental Completo)
+5.1. Papel e limites do Fazer Render+ IA
+
+
+O QUE A FAZER RENDER AI É:
+├── Tutora de educação financeira (explica conceitos)
+├── Coach de hábitos e motivação diária
+├── Copiloto do simulador (comenta decisões)
+├── Guia de próximos passos personalizados
+└── Explicadora de mercado (em linguagem simples)
+
+O QUE A FAZER RENDER AI NÃO É:
+├── Consultora de investimentos (exige regulamentação CVM)
+├── "Especialista em timing" (não prevê mercado)
+├── Garantidora de retorno ("vai subir")
+└── Substituta de planejador financeiro profissional
+5.2. Rotina Diária da IA (o coração da motivação)
+A cada login, a IA executa um protocolo de engajamento personalizado:
+
+
+
+PROTOCOLO DE LOGIN — "Fazer Render+ IA Daily Check-in"
+
+PASSO 1 — Saudação personalizada por contexto temporal
+├── Manhã: "Bom dia, Samuel! Dia perfeito para plantar."
+├── Tarde: "Oi, Samuel! Que tal 10 minutos de aprendizado?"
+└── Noite: "Noite, Samuel! Já fez seu aporte do mês?"
+
+PASSO 2 — Recap do progresso (micro-vitória)
+└── "Você está na aula 7 da Trilha 1. Só mais 3 para o badge!"
+
+PASSO 3 — Próximo passo ÚNICO e claro
+└── "Sua próxima missão: Aprenda sobre CDB em 8 minutos. Topar?"
+
+PASSO 4 — Insight do dia (baseado na biblioteca-base)
+└── Exemplo: "Buffett diz: 'O mercado é um dispositivo de
+    transferência de dinheiro dos impacientes para os pacientes.'
+    Você está sendo paciente hoje?"
+
+PASSO 5 — Alerta contextual (se relevante)
+└── "A Selic está em 14,75%. Isso significa que sua reserva
+    no Tesouro Selic está rendendo bem. Quer ver quanto?"
+
+PASSO 6 — Dica de renda extra (3x por semana, em rodízio)
+└── "Dica de aceleração: Plataformas como Workana e 99Freelas
+    pagam de R$50 a R$500 por tarefa em edição de texto, design
+    e marketing. Isso poderia ser seu aporte extra do mês."
+5.3. Formato Padrão de Resposta do Chat
+Toda resposta relevante do Fazer Render+ IA segue esta estrutura:
+
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 RESPOSTA DIRETA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[2-3 linhas diretas ao ponto]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🧠 O PRINCÍPIO POR TRÁS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Explicação do conceito com referência ao mestre/livro]
+💡 Inspirado em: [Nome] — "[Obra]"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚡ COMO APLICAR AGORA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Passo a passo aplicável hoje]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️ CUIDADOS E LIMITAÇÕES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[O que pode dar errado; onde este princípio não se aplica]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📚 PRÓXIMO PASSO NO APP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Sugestão de aula, simulação ou exercício relacionado]
+5.4. Carteiras-Modelo Educativas (Motor de Recomendação)
+
+
+COMO FUNCIONA:
+1. IA lê perfil do usuário (objetivo, prazo, perfil, plano atual)
+2. Busca na KB curada a carteira-modelo correspondente
+3. Apresenta o card com TODA a transparência:
+   - % de alocação por classe
+   - Critérios de escolha
+   - Cenários possíveis
+   - "Quando NÃO usar"
+   - Botão: "Simular esta carteira"
+4. NUNCA indica ativo específico como "compre X agora"
+5. SEMPRE oferece a aula relacionada para aprender mais
+
+EXEMPLOS DE CARTEIRAS-MODELO:
+├── "Reserva Pura" (Conservador, 0–12 meses)
+│   → 100% Tesouro Selic / CDB D+0 de banco grande
+│
+├── "Proteção Inflacionária" (Conservador, 3–7 anos)
+│   → 60% Tesouro IPCA+ | 40% CDB/LCI prazo fixo
+│
+├── "Renda Mensal Iniciante" (Moderado, 5+ anos)
+│   → 40% Renda Fixa | 40% FIIs diversificados | 20% Ações dividendos
+│
+├── "Crescimento Balanceado" (Moderado, 10+ anos)
+│   → 30% RF | 30% FIIs | 25% Ações BR | 15% ETF Internacional
+│
+└── "Patrimônio Global" (Arrojado, 15+ anos)
+    → 20% RF | 20% FIIs | 30% Ações BR | 30% ETFs Globais
+PARTE 6 — PLANOS E MONETIZAÇÃO
+6.1. Estrutura de Planos (definitiva)
+
+
+┌─────────────────────────────────────────────────────────────────┐
+│  🆓  FREE — Gratuito para sempre                                 │
+├─────────────────────────────────────────────────────────────────┤
+│  ACESSO:                                                         │
+│  ✅ Trilha 0 — Base Financeira (10 aulas)                        │
+│  ✅ Trilha 1 — Renda Fixa Brasil (10 aulas)                      │
+│  ✅ Fazer Render+ IA Chat (limitado a 10 perguntas/dia)                  │
+│  ✅ Carteiras-modelo de renda fixa (visualização)                │
+│  ✅ Simulador básico (Tesouro Selic + CDB)                       │
+│  ✅ Diagnóstico financeiro                                        │
+│  ✅ Streak e badges das trilhas gratuitas                         │
+│  ✅ Radar de Mercado básico (web)                                 │
+│  ❌ Trilhas avançadas | ❌ Módulo renda extra                    │
+│  ❌ Carteiras-modelo avançadas | ❌ Dicas de renda extra          │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│  💎  PLUS — R$29,90/mês  |  R$239/ano (~R$19,90/mês)           │
+├─────────────────────────────────────────────────────────────────┤
+│  TUDO DO FREE, MAIS:                                             │
+│  ✅ Trilha 2 — Fundos Imobiliários                               │
+│  ✅ Trilha 3 — Renda Fixa Avançada e Carteira Completa           │
+│  ✅ Fazer Render+ IA Chat ilimitado                                      │
+│  ✅ Simulador avançado (FIIs + Renda Fixa completa)              │
+│  ✅ Carteiras-modelo Plus (renda mensal, proteção inflação)      │
+│  ✅ Boletim semanal personalizado (e-mail + push)                │
+│  ✅ Mapa do Objetivo (planejamento de metas)                     │
+│  ✅ Dicas de renda extra (3x/semana)                             │
+│  ✅ Protocolo diário de motivação avançado                       │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│  👑  PREMIUM — R$59,90/mês  |  R$479/ano (~R$39,90/mês)        │
+├─────────────────────────────────────────────────────────────────┤
+│  TUDO DO PLUS, MAIS:                                             │
+│  ✅ Trilha 4 — Ações Brasil                                      │
+│  ✅ Trilha 5 — Ações Internacionais / Globais                    │
+│  ✅ Trilha 6 — Portfólio Completo e Liberdade Financeira         │
+│  ✅ Módulo Especial — Renda Extra e Aceleração Patrimonial       │
+│  ✅ Simulador completo (todos os ativos)                         │
+│  ✅ Todas as carteiras-modelo (incluindo global)                  │
+│  ✅ "Jornadas Reais" (histórias de brasileiros que enriqueceram)  │
+│  ✅ Acesso antecipado a novos conteúdos                          │
+│  ✅ 2 sessões/mês de mentoria em grupo ao vivo                   │
+│  ✅ Certificado Fazer Render+ (para cada trilha concluída)          │
+│  ✅ Comunidade exclusiva Premium                                  │
+└─────────────────────────────────────────────────────────────────┘
+6.2. Funil de Conversão
+
+
+TRÁFEGO (orgânico + microinfluencers)
+         ↓
+CADASTRO FREE (sem cartão, sem fricção)
+         ↓
+ENGAJAMENTO (streak, badges, progresso nas trilhas free)
+         ↓
+GATILHO DE UPGRADE (paywalls estratégicos):
+├── "Você terminou a Trilha 1! A Trilha 2 te espera no PLUS."
+├── "Simule FIIs? Disponível no PLUS."
+└── "Fazer Render+ IA disse: 'Sua próxima aula é Premium. Upgrade grátis por 7 dias.'"
+         ↓
+TRIAL PREMIUM 7 DIAS (sem cobrança)
+         ↓
+CONVERSÃO → PLUS ou PREMIUM
+         ↓
+RETENÇÃO (streak, boletim, comunidade, novas aulas mensais)
+PARTE 7 — ESTRATÉGIA DE AQUISIÇÃO: MICROINFLUENCERS
+7.1. Conceito: "Embaixadores Fazer Render+"
+Modelo híbrido: fee fixo (pelo conteúdo) + performance (por conversão via cupom). Isso garante qualidade do conteúdo e incentiva resultado real.
+
+7.2. Critérios de seleção de influencers
+
+
+PERFIL IDEAL:
+├── Seguidores: 5.000 a 200.000 (micro e médio — maior engajamento)
+├── Taxa de engajamento: ≥ 3% (comentários reais, DMs)
+├── Nicho principal: finanças pessoais, carreira, organização,
+│   concursos públicos, minimalismo, vida simples, maternidade,
+│   renda extra, jovens adultos, recém-formados
+├── Tom: educativo, próximo, sem ostentação
+└── Público: predominantemente BR, 20–45 anos
+
+NICHOS ADJACENTES QUE CONVERTEM BEM:
+├── 🎓 Concurseiros (perfil conservador, disciplinado)
+├── 🍳 Vida simples / frugalidade (já pensam em guardar dinheiro)
+├── 👩‍💼 Carreira e primeiro emprego (momento de começar a investir)
+├── 👩‍👧 Maternidade (preocupação com futuro dos filhos)
+├── 📱 Produtividade e organização (receptivos a apps e ferramentas)
+└── 💪 Saúde financeira / sair das dívidas (dor clara)
+7.3. Pacotes de parceria
+
+
+PACOTE BÁSICO (Micro 5k–30k seguidores)
+├── Entrega: 1 Reels (45–90s) + 3 Stories com link + bio por 48h
+├── Fee fixo: R$150 – R$400
+├── Bônus performance: R$15 por conversão para PLUS/PREMIUM
+└── Cupom exclusivo: ex. "MARIANA10" (10 dias Premium grátis)
+
+PACOTE INTERMEDIÁRIO (Micro-médio 30k–100k)
+├── Entrega: 1 Reels + 5 Stories + 1 carrossel educativo + live 20min
+├── Fee fixo: R$500 – R$1.500
+├── Bônus performance: R$20 por conversão
+└── Cupom + link UTM rastreado
+
+PACOTE PREMIUM (Médio 100k–250k)
+├── Entrega: 2 Reels + stories por 7 dias + 1 live 30min + integração
+├── Fee fixo: R$2.000 – R$5.000
+├── Bônus performance: R$25 por conversão
+└── Parceria de 3 meses (recorrência de conteúdo)
+7.4. Mensagens que convertem (copy validado)
+
+
+ÂNGULO 1 — "Você não é pobre demais para investir"
+"Com R$50 por mês você já pode começar a construir seu futuro.
+O Fazer Render+ te ensina do zero, com IA que explica tudo em
+linguagem de gente, e você pratica sem arriscar dinheiro real."
+
+ÂNGULO 2 — "Aprenda o que os ricos sabem (e ninguém te ensinou)"
+"Os maiores investidores do mundo — Buffett, Graham, Barsi —
+deixaram tudo escrito. O Fazer Render+ traduziu isso para o
+português do dia a dia. Gratuito para começar."
+
+ÂNGULO 3 — "A poupança te rouba todo mês"
+"Sabia que a poupança rendeu menos que a inflação por anos?
+Descubra alternativas seguras e aprenda a usar o Tesouro Direto
+em menos de 10 minutos no Fazer Render+."
+
+ÂNGULO 4 — "Sua IA de educação financeira"
+"Imagina ter um consultor financeiro disponível 24h para
+tirar dúvidas, sugerir próximos passos e te motivar a
+investir todo mês. Isso existe. É gratuito. É o Fazer Render+."
+7.5. Dashboard de performance dos influencers
+
+
+MÉTRICAS RASTREADAS POR INFLUENCER:
+├── Cliques no link (UTM)
+├── Cadastros gerados (Free)
+├── Conversões para PLUS/PREMIUM (cupom/UTM)
+├── CAC (Custo de Aquisição por Cliente)
+├── LTV estimado (Lifetime Value)
+├── Taxa de retenção D7, D30 dos usuários captados
+└── ROI por influencer (conversão ÷ fee pago)
+
+FREQUÊNCIA DE ANÁLISE: semanal
+FERRAMENTA: dashboard interno + Mixpanel + UTM
+PARTE 8 — GAMIFICAÇÃO E MOTIVAÇÃO (Sistema Completo)
+8.1. Elementos de Gamificação
+
+
+🔥 STREAK DIÁRIO
+├── "Você está em sequência há 7 dias!"
+├── 7 dias → Badge "Semana Vencida"
+├── 30 dias → 1 semana Plus grátis
+└── 100 dias → Badge lendário "Investidor Incansável"
+
+🪙 FAZER RENDERCOINS (moeda interna)
+├── +10 por aula concluída
+├── +20 por quiz com 100% de acerto
+├── +50 por trilha concluída
+├── +100 por aporte simulado registrado
+└── Uso: desbloquear conteúdo extra ou desconto na assinatura
+
+🏅 SISTEMA DE BADGES (35 conquistas)
+├── Por aprendizado: "Poupança? Nunca mais", "Sócio Inteligente"
+├── Por comportamento: "Anti-Impulsivo", "Aportes em Dia"
+├── Por conquistas: "Primeiro Milhão Simulado", "Carteira Global"
+└── Por comunidade: "Mentor da Turma", "Jornada Real Compartilhada"
+
+📊 SCORE FAZER RENDER+ (0–2000)
+├── Educação (500): trilhas concluídas
+├── Hábito (500): streak e frequência de login
+├── Prática (500): simulações realizadas
+└── Planejamento (500): metas definidas e atualizadas
+
+🏆 RANKING DA COMUNIDADE
+├── Top 100 por Score Fazer Render+
+├── Ranking por trilha
+└── "Mais constante do mês"
+
+📜 CERTIFICADOS
+├── Certificado por trilha concluída (PDF personalizado)
+├── Certificado "Investidor Fazer Render+ Completo"
+└── Compartilhável no LinkedIn e WhatsApp
+PARTE 9 — BACKLOG COMPLETO DO MVP
+Épicos → Features → Critérios de aceitação
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ÉPICO A — CONTA E PERFIL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+A1. Cadastro/Login
+  ├── Email + senha
+  ├── Google OAuth
+  └── AC: usuário cria conta em menos de 60 segundos
+
+A2. Onboarding (questionário inteligente)
+  ├── 10 perguntas com progresso visual
+  ├── Geração de perfil + plano de 14 dias
+  └── AC: usuário sai do onboarding com "próxima missão clara"
+
+A3. Perfil do usuário
+  ├── Editar objetivos, aporte, prazo
+  └── AC: perfil atualizado recalcula plano de jornada
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ÉPICO B — PWA E INSTALAÇÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+B1. Manifest + Service Worker
+  ├── Ícone, splash screen, modo standalone
+  ├── Cache offline das aulas já assistidas
+  └── AC: PWA instalável no Android e iOS sem erros
+
+B2. Notificações Push
+  ├── Web Push (Android Chrome)
+  ├── Notificação de streak, aulas e boletim
+  └── AC: push entregue em < 30s após evento
+
+B3. Guia de instalação no onboarding
+  ├── Animação ensinando instalar no Android e iOS
+  └── AC: 80%+ dos usuários instalando após ver o guia
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ÉPICO C — EDUCAÇÃO (TRILHAS 0 E 1 NO MVP)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+C1. Player de aulas (vídeo + texto)
+  └── AC: aula carrega em < 3s em 4G
+
+C2. Quiz por aula
+  └── AC: feedback imediato + explicação da resposta certa
+
+C3. Progresso e streak
+  └── AC: progresso salvo em tempo real; streak resetado à meia-noite
+
+C4. Sistema de badges
+  └── AC: badge entregue imediatamente ao cumprir critério
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ÉPICO D — FAZER RENDER AI (Chat + Check-in diário)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+D1. Base de Conhecimento (KB) v1
+  ├── Princípios, definições, referências (renda fixa + comportamento)
+  └── AC: ≥ 200 "chunks" vetorizados no pgvector
+
+D2. Chat RAG
+  ├── Formato padrão de resposta (6 blocos)
+  ├── Botões rápidos de FAQ
+  └── AC: respostas relevantes em < 5s
+
+D3. Check-in diário
+  ├── Protocolo de 6 passos ao login
+  └── AC: aparece em todo login; dispensável em 1 toque
+
+D4. Dicas de renda extra
+  ├── Banco de 30 dicas em rodízio (3x/semana)
+  └── AC: dica nunca se repete antes de 10 dias
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ÉPICO E — SIMULADOR (MVP: Renda Fixa)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+E1. Aplicação virtual (Tesouro Selic, CDB, LCI)
+  └── AC: rendimento calculado com taxa oficial do BACEN
+
+E2. Projeção em cenários (conservador/base/otimista)
+  └── AC: 3 cenários lado a lado com gráfico
+
+E3.*
+
+
+Parece que deu erro. Refaça tudo e inclua o que pedi. Quero fazer ajustes no escopo: 1 - criar mais 3 trilhas de conhecimentos no curso com a ia: investimento em ações Brasil, ações ( fora do Brasil) , fundos imobiliários. a ia, sempre vai se basear  nos melhores livros e investidores mundialmente renomados , pois quero um aplicativo educativo mais completo. 2 - a ia vai guiar o usuário passo a passo no crescimento em conhecimento e motivação diária para ele alcançar seus objetivos. E por isso sempre que o usuário logar ia vai sugerir o próximo passo e inclusive dar dicas de renda extra. 3 - quero usar o wpa para instalar o aplicativo em celulares android e iOS. 4 - a faixa de preço começa gratuito. Liberando a trilha de renda fixa e dicas básicas. Depois 29,90 com inclusão da trilha fundos de investimento e simulação de investimentos em fundos imobiliários e renda fixa nível iniciante e intermediário.  Depois o premium, com acesso completo e todas trilhas de conhecimentos, simulador e dicas avançadas. Você também pode sugerir e ajustar o que eu pedi segundo as melhores estratégias de aquisição de conhecimento, didática, motivação e etc. Com isso pode refazer o escopo completo novamente incluindo tudo que pedi. Pense sempre em nível altamente  profissional e que resolva essa dor real do brasileiro, que acha que porque ganha pouco não pode pensar em investir e se planejar para o futuro. 
+Claude Sonnet 4.6
+Samuel, vou refazer o escopo completo e definitivo agora — sem cortes, sem erros, do início ao fim.
+
+📋 ESCOPO COMPLETO E DEFINITIVO
+Fazer Render+ — "Do Zero ao Patrimônio"
+A plataforma educativa mais completa do Brasil para quem acha que não pode investir
+Manifesto: "91% dos brasileiros nunca receberam educação financeira. 79,5% dos lares estão endividados. O Fazer Render+ existe para quebrar esse ciclo — provando que qualquer pessoa com R$50 e vontade pode construir seu futuro financeiro hoje."
+
+BLOCO 1 — VISÃO, PROBLEMA E SOLUÇÃO
+1.1. O problema real que o produto resolve
+
+
+BRASIL 2026 — A DOR:
+├── 79,5% dos lares brasileiros endividados (CNC, jan/2026)
+├── 91% dos brasileiros sem educação financeira na infância
+├── Apenas 5 milhões de CPFs ativos na B3 (de 220M de pessoas)
+├── Poupança ainda é "investimento" para 70%+ da população
+├── Crença limitante: "Investir é só pra quem tem muito dinheiro"
+└── Consequência: aposentadoria dependente do INSS, sem patrimônio
+O Fazer Render+ responde a cada uma dessas dores:
+
+
+
+
+Dor	Resposta do Fazer Render+
+"Não tenho dinheiro para investir"	Trilha free + simulador a partir de R$0
+"É muito complicado"	Linguagem simples, IA explicadora, aulas de 5–10 min
+"Não sei por onde começar"	Onboarding com plano personalizado em 5 minutos
+"Tenho dívidas primeiro"	Módulo de saída de dívidas integrado ao início da jornada
+"Não confio em curso de guru"	Baseado 100% em livros e investidores renomados mundialmente
+"Tenho medo de perder dinheiro"	Simulação sem risco real antes de qualquer investimento
+1.2. Proposta de valor
+"Aprenda a investir do zero com a orientação de uma IA baseada nos maiores investidores do mundo — em linguagem simples, com prática real e motivação diária."
+
+BLOCO 2 — TECNOLOGIA: PWA
+2.1. Por que PWA é a escolha ideal
+
+
+PWA (Progressive Web App) — VANTAGENS ESTRATÉGICAS:
+
+CUSTO
+├── App nativo iOS + Android: R$80k–R$200k+
+└── PWA: R$25k–R$60k (um único codebase para tudo)
+
+DISTRIBUIÇÃO
+├── App nativo: aprovação Apple (dias/semanas) + taxa 15–30%
+└── PWA: instalação direta pelo navegador, sem loja, sem taxa
+
+ATUALIZAÇÃO
+├── App nativo: usuário precisa baixar atualização
+└── PWA: atualiza automaticamente no servidor
+
+FUNCIONALIDADES DISPONÍVEIS (2025/2026)
+├── ✅ Instalação na tela inicial (Android + iOS Safari)
+├── ✅ Funcionamento offline (Service Workers + cache)
+├── ✅ Notificações push (Android completo; iOS 16.4+)
+├── ✅ Splash screen, modo tela cheia, ícone personalizado
+├── ✅ Performance próxima ao nativo em dispositivos modernos
+└── ✅ SEO nativo (Google indexa PWA — vantagem enorme)
+2.2. Como o usuário instala o Fazer Render+
+
+
+ANDROID (Chrome / Samsung Internet)
+├── Acessa fazerrender.com.br
+├── Banner automático: "Adicionar Fazer Render+ à tela inicial"
+├── Toca em "Instalar"
+└── Ícone aparece na home, abre em tela cheia como app nativo
+
+iOS (Safari)
+├── Acessa fazerrender.com.br no Safari
+├── Toca no ícone de compartilhar (□↑)
+├── "Adicionar à Tela de Início"
+└── Abre idêntico ao Android — sem barra do navegador
+
+INSTRUÇÃO NO ONBOARDING:
+└── Animação passo a passo guiando a instalação
+    (diferente para Android e iOS, detectada automaticamente)
+2.3. Stack tecnológica completa
+
+
+FRONTEND — PWA
+├── Next.js 14 (App Router + SSR)
+│   ├── SEO nativo → aquisição orgânica forte
+│   ├── Server Components → carregamento ultrarrápido
+│   └── Deploy no Vercel (HTTPS automático, CDN global)
+├── Tailwind CSS (design system responsivo)
+├── Framer Motion (animações fluidas)
+├── Workbox (Service Worker — cache e offline)
+├── Web App Manifest (instalação como app)
+└── Recharts (gráficos de simulação e portfólio)
+
+BACKEND
+├── Node.js + NestJS (API REST estruturada e escalável)
+├── PostgreSQL (banco de dados principal)
+├── Redis (cache de dados de mercado + sessões)
+├── BullMQ (filas: notificações, e-mails, alertas)
+└── Prisma ORM (acesso tipado ao banco)
+
+IA ENGINE
+├── OpenAI GPT-4o (chat tutor + geração de insights)
+├── LangChain (orquestração RAG + contexto persistente)
+├── pgvector (banco vetorial embutido no PostgreSQL)
+│   └── Armazena KB curada para busca semântica
+└── Python FastAPI (microserviço de carteiras-modelo)
+
+APIS DE DADOS FINANCEIROS
+├── Banco Central Brasil API (Selic, IPCA, CDI — oficial, gratuita)
+├── BRAPI.dev (ações B3, FIIs, ETFs — gratuita)
+├── Alpha Vantage (ações internacionais — freemium)
+└── CoinGecko (cripto — gratuita)
+
+PAGAMENTOS
+├── Stripe (cartão + assinatura recorrente)
+├── Pix (via Gerencianet/EFI Bank)
+└── Hotmart ou Kiwify (infoprodutos avulsos)
+
+NOTIFICAÇÕES
+├── Web Push API (push nativo via Service Worker)
+└── SendGrid (e-mails: boletim semanal + transacionais)
+
+ANALYTICS E MONITORAMENTO
+├── Mixpanel (comportamento, funil, retenção)
+├── Google Analytics 4 (tráfego web)
+└── Sentry (monitoramento de erros em tempo real)
+
+INFRAESTRUTURA
+├── Vercel (frontend + PWA)
+├── Railway (backend + PostgreSQL)
+├── Cloudflare (CDN, proteção DDoS, cache)
+└── Cloudflare R2 (vídeos e materiais — baixo custo)
+BLOCO 3 — BIBLIOTECA-BASE DA IA (Knowledge Base)
+Esta é a alma do produto. Toda resposta da IA, toda aula e toda carteira-modelo é fundamentada aqui. Não é opinião. É síntese de décadas de sabedoria validada pelos maiores investidores e livros do mundo.
+
+3.1. As Escolas do Conhecimento
+🏛️ ESCOLA 1 — VALUE INVESTING (Valor Intrínseco)
+BENJAMIN GRAHAM — "O Pai do Value Investing" Obras: O Investidor Inteligente (1949), Security Analysis (1934)
+
+
+
+
+Princípio	Como aparece no Fazer Render+
+Margem de Segurança	Ensinar a nunca pagar mais que o valor justo de um ativo
+Mr. Market	Mercado é irracional — queda de preço pode ser oportunidade
+Investidor defensivo vs. empreendedor	Base do perfil de investidor no onboarding
+"O maior inimigo do investidor é ele mesmo"	Módulo de psicologia financeira
+WARREN BUFFETT — "O Oráculo de Omaha" Fontes: Cartas anuais da Berkshire Hathaway, A Bola de Neve
+
+
+
+
+Princípio	Como aparece no Fazer Render+
+"Invista no que você entende"	Exercício: liste empresas que você usa no dia a dia
+"Período preferido para manter: para sempre"	Módulo de buy & hold e visão de longo prazo
+"Seja ganancioso quando outros têm medo"	Módulo de comportamento em crises
+Regra 1: não perca dinheiro. Regra 2: lembre da 1	Gestão de risco como pilar central
+"Preço é o que você paga, valor é o que recebe"	Lógica das carteiras-modelo
+CHARLIE MUNGER — "O Sócio Silencioso"
+
+
+
+
+Princípio	Como aparece no Fazer Render+
+Modelos mentais	Módulo de tomada de decisão financeira
+Inversão: "onde vou morrer para evitar o lugar?"	Seção "Erros a evitar" em cada aula
+"Seja racionalmente curioso"	Tom do chat da IA: sempre explicar o "porquê"
+🏛️ ESCOLA 2 — INDEXAÇÃO E CUSTOS BAIXOS
+JOHN BOGLE — Fundador da Vanguard Obra: The Little Book of Common Sense Investing
+
+
+
+
+Princípio	Como aparece no Fazer Render+
+"Os custos importam mais do que qualquer coisa"	Comparativo de taxas em cada aula de produto
+"Não procure a agulha — compre o palheiro (ETF)"	Trilha de ETFs e indexação
+Rebalanceamento disciplinado	Rotina de revisão de carteira
+"Simplicidade é inimiga da complexidade costosa"	Carteiras-modelo com máximo 4 blocos
+BURTON MALKIEL — Um Passeio Aleatório por Wall Street
+
+
+
+
+Princípio	Como aparece no Fazer Render+
+Mercados são eficientes para a maioria	Por que ETFs batem a maioria dos gestores ativos
+🏛️ ESCOLA 3 — CRESCIMENTO E QUALIDADE
+PETER LYNCH — Gestor do Magellan Fund (29% a.a. por 13 anos) Obras: One Up on Wall Street, Beating the Street
+
+
+
+
+Princípio	Como aparece no Fazer Render+
+"Invista no que você conhece"	Exercício de identificação de empresas do cotidiano
+Classificação de ações (stalwarts, fast growers...)	Framework visual para tipos de empresa
+"8 meses em 10, a bolsa é entediante — e está tudo bem"	Mensagem de normalização da espera
+PHILIP FISHER — Ações Comuns, Lucros Extraordinários
+
+
+
+
+Princípio	Como aparece no Fazer Render+
+"Scuttlebutt": pesquise a empresa antes	Checklist de análise de empresa para o usuário
+Concentração em poucas empresas de qualidade	Debate qualidade vs. quantidade na carteira
+🏛️ ESCOLA 4 — ALOCAÇÃO, MACRO E RISCO
+RAY DALIO — Fundador da Bridgewater Obras: Princípios, A Template for Understanding Big Debt Crises
+
+
+
+
+Princípio	Como aparece no Fazer Render+
+All Weather Portfolio	Carteiras-modelo para qualquer cenário econômico
+"Diversificação é o Santo Graal dos investimentos"	Módulo de diversificação por classe de ativo
+Ciclos econômicos	Módulo de macro para iniciantes (Selic, inflação, câmbio)
+NASSIM TALEB — A Lógica do Cisne Negro
+
+
+
+
+Princípio	Como aparece no Fazer Render+
+Eventos raros e imprevisíveis existem	Reserva de emergência como proteção de cauda
+🏛️ ESCOLA 5 — MESTRES BRASILEIROS
+LUIZ BARSI — "O Warren Buffett brasileiro"
+
+
+
+
+Princípio	Como aparece no Fazer Render+
+Dividendos como filosofia de vida	Trilha de FIIs e ações pagadoras de dividendos
+"Compre ações sólidas e espere"	Estratégia buy & hold brasileira
+DÉCIO BAZIN — Faça Fortuna com Ações
+
+
+
+
+Princípio	Como aparece no Fazer Render+
+Yield mínimo de 6% como critério	Filtro de seleção na trilha de dividendos
+Consistência de dividendos ao longo dos anos	Checklist de análise de empresa pagadora
+GUSTAVO CERBASI — Casais Inteligentes Enriquecem Juntos
+
+
+
+
+Princípio	Como aparece no Fazer Render+
+Planejamento financeiro familiar	Onboarding com objetivos familiares
+"Não é quanto você ganha, é quanto você guarda"	Mensagem central do produto
+🏛️ ESCOLA 6 — PSICOLOGIA DO INVESTIDOR
+DANIEL KAHNEMAN — Rápido e Devagar RICHARD THALER — Nudge (Nobel 2017) MORGAN HOUSEL — A Psicologia Financeira
+
+
+
+
+Princípio	Como aparece no Fazer Render+
+Aversão à perda	Módulo de comportamento em quedas de mercado
+Vieses cognitivos (ancoragem, excesso de confiança)	Quiz de vieses financeiros (aula interativa)
+"Poupança não é disciplina — é design do ambiente"	Estratégia de automação de aportes
+"Tempo no mercado bate timing de mercado"	Simulação visual do impacto do tempo
+BLOCO 4 — TRILHAS DE CONHECIMENTO (Currículo Completo)
+4.1. Mapa Geral das Trilhas
+
+
+╔══════════════════════════════════════════════════════════════╗
+║              MAPA DE TRILHAS — FAZER RENDER+                    ║
+╠══════════════════════════════════════════════════════════════╣
+║  🆓 FREE (Gratuito)                                          ║
+║  ├── TRILHA 0 — Base Financeira e Comportamento              ║
+║  └── TRILHA 1 — Renda Fixa Brasil (Iniciante)               ║
+╠══════════════════════════════════════════════════════════════╣
+║  💎 PLUS — R$29,90/mês                                       ║
+║  ├── TRILHA 2 — Fundos Imobiliários (FIIs)                   ║
+║  └── TRILHA 3 — Renda Fixa Avançada e Carteira Completa      ║
+╠══════════════════════════════════════════════════════════════╣
+║  👑 PREMIUM — R$59,90/mês                                    ║
+║  ├── TRILHA 4 — Ações Brasil                                 ║
+║  ├── TRILHA 5 — Ações Internacionais e Globais               ║
+║  ├── TRILHA 6 — Portfólio Completo e Liberdade Financeira    ║
+║  └── MÓDULO ESPECIAL — Renda Extra e Aceleração Patrimonial  ║
+╚══════════════════════════════════════════════════════════════╝
+📚 TRILHA 0 — BASE FINANCEIRA (FREE)
+"Antes de investir, vença o jogo mental do dinheiro" Referências: Morgan Housel, Daniel Kahneman, Gustavo Cerbasi, Richard Thaler, Ramit Sethi
+
+
+
+
+#	Aula	Formato	Exercício
+0.1	Por que você nunca aprendeu sobre dinheiro (e não é sua culpa)	Vídeo 6min	Reflexão guiada
+0.2	A diferença entre rico e endividado começa na cabeça	Texto + infográfico	Quiz de vieses cognitivos
+0.3	Quanto você ganha vs. quanto chega ao final do mês	Ferramenta interativa	Diagnóstico financeiro pessoal
+0.4	O poder dos juros compostos: seu aliado ou seu algoz	Simulador animado "Bola de Neve"	Projeção pessoal de 10 anos
+0.5	A regra 50-30-20 adaptada à realidade brasileira	Vídeo 5min	Montar orçamento pessoal
+0.6	Como sair das dívidas e começar a investir ao mesmo tempo	Guia passo a passo	Plano de saída de dívidas
+0.7	Por que R$50/mês já é suficiente para começar	Simulador de aportes	Definir aporte inicial
+0.8	Automação: faça o dinheiro trabalhar sem depender da força de vontade	Vídeo 7min	Criar débito automático virtual
+0.9	Seu primeiro objetivo financeiro: real, mensurável e com prazo	Ferramenta de metas	Definir meta nº 1
+0.10	Teste de perfil de investidor + Plano de Jornada personalizado	Quiz interativo	Receber plano personalizado
+🏅 Badge: "Semente Plantada" 🌱
+
+📚 TRILHA 1 — RENDA FIXA BRASIL (FREE)
+"Seu dinheiro seguro e rendendo mais do que a poupança" Referências: Banco Central, Tesouro Nacional, Graham (segurança de capital), Bogle (custo e simplicidade), Cerbasi
+
+
+
+
+#	Aula	Formato	Exercício
+1.1	O que é renda fixa e por que a poupança é a pior opção	Vídeo 8min + comparativo animado	Calcular quanto perdeu na poupança
+1.2	Selic, CDI, IPCA: o trio que governa seus investimentos	Infográfico interativo	Quiz de conceitos
+1.3	Tesouro Selic: o melhor amigo da reserva de emergência	Vídeo 6min	Simular Tesouro Selic
+1.4	Tesouro IPCA+: proteger o poder de compra no longo prazo	Vídeo + simulador de inflação	Simular 3 cenários
+1.5	Marcação a mercado: o que é e como não entrar em pânico	Animação explicativa	Quiz de comportamento
+1.6	CDB: como comparar e escolher o melhor	Ferramenta comparadora	Comparar 3 CDBs reais
+1.7	LCI e LCA: quando a isenção de IR realmente vale a pena	Calculadora de equivalência	Calcular CDB equivalente
+1.8	FGC: o seguro dos seus investimentos (e seus limites)	Texto + quiz	Calcular cobertura do FGC
+1.9	Tributação da renda fixa: tabela regressiva e IR na prática	Guia visual	Calcular IR de um resgate
+1.10	Montando sua primeira carteira de renda fixa com R$500	Projeto guiado	Carteira no simulador
+🏅 Badge: "Poupança? Nunca mais." 💰
+
+📚 TRILHA 2 — FUNDOS IMOBILIÁRIOS — FIIs (PLUS)
+"Seja dono de imóveis sem ter que comprar um" Referências: Barsi (dividendos), Buffett (qualidade), Bazin (yield), livros especializados em FIIs brasileiros
+
+
+
+
+#	Aula	Formato	Exercício
+2.1	O que são FIIs: como ter renda de aluguel com R$100	Vídeo 8min + analogia visual	Quiz introdutório
+2.2	Tipos de FIIs: Tijolo, Papel e Híbridos — diferenças e riscos	Mapa visual interativo	Classificar 10 FIIs reais
+2.3	Dividend Yield: como interpretar sem cair em armadilhas	Calculadora de DY	Analisar 3 FIIs reais
+2.4	P/VP: comprando cota barata ou cara?	Ferramenta de comparação	Avaliar FIIs por P/VP
+2.5	Vacância, inadimplência e gestão — o que realmente importa	Vídeo 7min	Checklist de análise
+2.6	FIIs de Lajes x Galpões x Shopping x Papel: quando usar cada um	Vídeo comparativo	Montar carteira por tipo
+2.7	Como ler o relatório gerencial de um FII sem ser analista	Guia passo a passo	Analisar relatório real
+2.8	Isenção de IR nos dividendos: a grande vantagem dos FIIs	Calculadora comparativa	Simular renda mensal líquida
+2.9	Efeito da Selic nos FIIs: ciclos de juros e estratégia	Vídeo 9min + gráfico histórico	Analisar ciclo de juros
+2.10	Carteira de FIIs para iniciantes: da teoria à prática	Projeto final	Montar carteira no simulador
+🏅 Badge: "Proprietário Inteligente" 🏢
+
+📚 TRILHA 3 — RENDA FIXA AVANÇADA E CARTEIRA COMPLETA (PLUS)
+"Da reserva ao portfólio estratégico" Referências: Ray Dalio (All Weather), Bogle (alocação), Taleb (proteção), livro "Os Axiomas de Zurique"
+
+
+
+
+#	Aula	Formato	Exercício
+3.1	Debêntures, CRI e CRA: maior rentabilidade e seus riscos	Vídeo + guia de riscos	Comparar com CDB
+3.2	Fundos de Renda Fixa: quando fazem sentido (e quando não)	Análise de taxas	Calcular custo real
+3.3	Diversificação real: não é só ter vários produtos	Simulador de carteira	Testar correlações entre ativos
+3.4	O conceito All Weather aplicado à renda fixa brasileira	Vídeo + modelo visual	Montar carteira por cenário
+3.5	Prazos e objetivos: curto, médio e longo prazo em harmonia	Ferramenta de planejamento	Alinhar ativos a objetivos
+3.6	Rebalanceamento: manter a carteira sem emoção	Guia prático	Simular rebalanceamento
+3.7	Inflação alta: como proteger o patrimônio	Vídeo + calculadora	Simular cenário IPCA 10%
+3.8	Imposto de Renda para o investidor: declaração simplificada	Guia passo a passo	Checklist anual de IR
+3.9	Previdência privada: PGBL vs. VGBL vs. investimento direto	Calculadora comparativa	Simular 3 estratégias
+3.10	Projeto Final: portfólio de Renda Fixa + FIIs para sua vida	Mentoria IA + simulação	Carteira personalizada completa
+🏅 Badge: "Arquiteto Financeiro" 🎯
+
+📚 TRILHA 4 — AÇÕES BRASIL (PREMIUM)
+"Seja sócio das melhores empresas do Brasil" Referências: Graham (O Investidor Inteligente), Buffett (Cartas Berkshire), Barsi, Bazin (Faça Fortuna com Ações), Lynch (One Up on Wall Street), Fisher (Ações Comuns, Lucros Extraordinários)
+
+
+
+
+#	Aula	Formato	Exercício
+4.1	O que significa ser sócio de uma empresa (não especulador)	Vídeo + analogia	Identificar empresas do dia a dia
+4.2	Como a bolsa funciona: pregão, ordens, lotes e fracionado	Simulação animada	Simular primeira compra
+4.3	Análise Fundamentalista: os 6 indicadores que o iniciante precisa	Infográfico interativo	Analisar 1 empresa real
+4.4	P/L, P/VP, ROE, Dividend Yield, Dívida/EBITDA: sem medo	Calculadora de indicadores	Comparar 3 empresas reais
+4.5	Como ler o balanço patrimonial de forma simples	Guia visual	Analisar balanço de 1 empresa
+4.6	Estratégia de Dividendos (Bazin + Barsi): viver de renda	Vídeo 10min + carteira-modelo	Selecionar 5 pagadoras
+4.7	Estratégia Buy & Hold (Buffett): comprar e não vender	Vídeo + simulação de 20 anos	Montar carteira B&H
+4.8	Small Caps vs. Blue Chips: risco e potencial	Comparativo histórico	Alocar por perfil de risco
+4.9	Erros fatais: timing, FOMO, manada e alavancagem	Vídeo + cases reais	Quiz de comportamento em crise
+4.10	Carteira de ações BR para iniciante: de R$500 a R$5.000	Projeto guiado	Carteira completa no simulador
+🏅 Badge: "Sócio Inteligente" 📈
+
+📚 TRILHA 5 — AÇÕES INTERNACIONAIS E GLOBAIS (PREMIUM)
+"Invista no mundo inteiro sem sair do Brasil" Referências: Bogle (ETFs/indexação), Buffett (BRK.A), Ray Dalio (diversificação global), Little Book of Common Sense Investing, Malkiel
+
+
+
+
+#	Aula	Formato	Exercício
+5.1	Por que investir fora do Brasil: dolarização do patrimônio	Vídeo 8min + gráfico histórico	Calcular impacto do câmbio
+5.2	ETFs: comprar o mercado inteiro de uma vez	Animação explicativa	Simular IVVB11 vs. Ibovespa
+5.3	S&P 500, Nasdaq, Dow Jones: o que são e como investir	Infográfico interativo	Comparar índices globais
+5.4	BDRs: ações de Apple, Google, Amazon na B3	Guia prático	Simular compra de BDR
+5.5	Contas internacionais: Avenue, Stake, Interactive Brokers	Comparativo de plataformas	Escolher plataforma por perfil
+5.6	Risco cambial: aliado ou inimigo?	Calculadora de câmbio	Simular com variação do dólar
+5.7	ETFs temáticos: tecnologia, saúde, ESG, mercados emergentes	Mapa de ETFs globais	Montar carteira temática
+5.8	REITs: os FIIs americanos com dividendos em dólar	Vídeo + comparativo	Comparar REIT vs. FII
+5.9	Tributação de investimentos no exterior: carnê-leão e GCAP	Guia de IR internacional	Simular declaração
+5.10	Carteira global para o brasileiro: da teoria à prática	Projeto final	Carteira global no simulador
+🏅 Badge: "Investidor Global" 🌍
+
+📚 TRILHA 6 — PORTFÓLIO COMPLETO E LIBERDADE FINANCEIRA (PREMIUM)
+"Unindo tudo: sua rota para o primeiro milhão" Referências: Dalio (All Weather), Buffett + Munger, Morgan Housel (A Psicologia Financeira), Ramit Sethi
+
+
+
+
+#	Aula	Formato	Exercício
+6.1	O que é liberdade financeira de verdade	Vídeo + reflexão guiada	Definir seu "número da liberdade"
+6.2	A Regra dos 4%: calcular quanto você precisa para se aposentar	Calculadora interativa	Calcular seu número pessoal
+6.3	Montando o portfólio completo: RF + FIIs + Ações BR + Global	Ferramenta de alocação	Carteira integrada completa
+6.4	Rebalanceamento anual: manter a estratégia no longo prazo	Simulador de 30 anos	Simular com aportes mensais
+6.5	Proteção do patrimônio: seguros, previdência, diversificação extrema	Guia de proteção	Checklist de proteção patrimonial
+6.6	Psicologia em crises: 2008, 2020 e o que os mestres fizeram	Documentário interativo	Teste de comportamento em crise
+6.7	Planejamento fiscal inteligente para o investidor	Guia avançado de IR	Plano fiscal anual
+6.8	Quando e como mudar de estratégia sem destruir o portfólio	Vídeo + casos práticos	Simular mudança de alocação
+6.9	Vivendo de renda: FIIs + ações + renda fixa gerando renda passiva	Calculadora de independência	Projeção de renda passiva mensal
+6.10	Seu plano de 5 anos: do primeiro aporte ao primeiro milhão	Projeto final integrado	Plano personalizado completo
+🏅 Badge: "Arquiteto da Liberdade" 🏆
+
+📚 MÓDULO ESPECIAL — RENDA EXTRA E ACELERAÇÃO PATRIMONIAL (PREMIUM)
+"Mais aportes = patrimônio maior e mais rápido" Referências: Kiyosaki (Pai Rico, Pai Pobre), Cerbasi, Grant Cardone, Tim Ferriss
+
+⚠️ Este módulo é educativo e prático. Não promete enriquecimento rápido. Foco: gerar mais renda para investir com mais consistência.
+
+
+
+
+#	Dica / Mini-aula	Formato
+E.1	Freelance digital: habilidades que geram renda extra imediata	Cards + plataformas (Workana, 99Freelas, Fiverr)
+E.2	Vender o que você já sabe: transformar conhecimento em produto	Guia de validação de ideia
+E.3	Monetizar hobbies sem virar empresa	Exemplos práticos brasileiros
+E.4	Cashback, milhas e benefícios bancários como renda passiva de consumo	Calculadora de ganhos
+E.5	Aluguel de espaço, carro e bens: economia compartilhada	Comparativo de plataformas
+E.6	FGTS como estratégia de investimento	Calculadora de oportunidade
+E.7	Como negociar aumento ou promoção (a renda extra mais subestimada)	Roteiro de negociação
+E.8	Renda extra → aporte extra: automatizar o ciclo de crescimento	Ferramenta de metas de aceleração
+🏅 Badge: "Acelerador de Patrimônio" 🚀
+
+BLOCO 5 — IA TUTOR: "FAZER RENDER+ IA" (Escopo Completo)
+5.1. Papel e limites
+
+
+O QUE A FAZER RENDER+ IA É:
+├── Tutora de educação financeira (explica conceitos com referências)
+├── Coach de hábitos e motivação diária
+├── Copiloto do simulador (comenta decisões de alocação)
+├── Guia de próximos passos personalizados
+├── Explicadora de mercado em linguagem simples
+└── Sugere dicas de renda extra 3x por semana
+
+O QUE A FAZER RENDER+ IA NÃO É:
+├── Consultora de investimentos regulamentada (CVM)
+├── Especialista em timing de mercado
+├── Garantidora de retorno ou performance
+└── Substituta de planejador financeiro profissional
+5.2. Protocolo de Login Diário (Motivação + Orientação)
+A cada login, a Fazer Render+ IA executa um protocolo personalizado de 6 passos:
+
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PASSO 1 — Saudação contextual (por horário e progresso)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Manhã:   "Bom dia, Samuel! Cada aula de hoje é um tijolo
+          no seu futuro. Vamos construir?"
+Tarde:   "Oi, Samuel! 10 minutos de aprendizado agora
+          valem mais do que horas de preocupação."
+Noite:   "Noite, Samuel! Já fez seu aporte deste mês?
+          Pequenos passos todos os dias constroem patrimônio."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PASSO 2 — Micro-vitória (recap do progresso)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"🔥 Você está em sequência há 12 dias! Só mais 18 para
+ ganhar 1 semana Plus grátis. Continue assim."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PASSO 3 — Próximo passo ÚNICO e claro
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"📚 Sua próxima missão: Aula 1.6 — CDB: como comparar
+ e escolher o melhor. São 8 minutos. Topar?"
+[Começar agora]  [Lembrar mais tarde]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PASSO 4 — Insight do dia (baseado na Biblioteca-Base)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"💡 Buffett disse: 'O mercado é um dispositivo de
+ transferência de dinheiro dos impacientes para os
+ pacientes.' Você está praticando a paciência hoje?"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PASSO 5 — Alerta de mercado contextual (quando relevante)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"📊 A Selic está em 14,75% a.a. Isso significa que seu
+ Tesouro Selic está rendendo muito bem. Quer ver a
+ simulação do seu saldo daqui a 12 meses?"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PASSO 6 — Dica de renda extra (3x por semana, em rodízio)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"💰 Dica de aceleração: Plataformas como Workana e
+ GetNinjas pagam de R$50 a R$400 por tarefa em edição
+ de texto, design e suporte online. Um projeto por semana
+ = seu aporte mensal garantido."
+5.3. Formato Padrão de Resposta do Chat
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 RESPOSTA DIRETA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[2–3 linhas diretas ao ponto, sem jargão]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🧠 O PRINCÍPIO POR TRÁS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Explicação do conceito com referência ao mestre/livro]
+💡 Baseado em: [Nome] — "[Obra/Fonte]"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚡ COMO APLICAR AGORA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Passo a passo aplicável hoje, sem precisar de muito dinheiro]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️ CUIDADOS E LIMITAÇÕES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[O que pode dar errado; onde este princípio não se aplica]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📚 PRÓXIMO PASSO NO APP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Sugestão de aula, simulação ou exercício diretamente relacionado]
+5.4. Carteiras-Modelo Educativas (Motor de Recomendação)
+
+
+COMO FUNCIONA:
+1. IA lê perfil: objetivo + prazo + perfil de risco + plano atual
+2. Busca na KB curada a carteira-modelo mais adequada
+3. Apresenta o card com transparência total
+4. NUNCA indica ativo específico como "compre X agora"
+5. SEMPRE oferece aula relacionada para aprofundamento
+
+CARTEIRAS-MODELO DISPONÍVEIS:
+
+FREE:
+├── "Reserva Pura" (Conservador, 0–12 meses)
+│   100% Tesouro Selic / CDB liquidez diária banco grande
+└── "Proteção Inflacionária" (Conservador, 3–7 anos)
+    60% Tesouro IPCA+ | 40% CDB/LCI prazo fixo
+
+PLUS:
+├── "Renda Mensal Iniciante" (Moderado, 5+ anos)
+│   40% Renda Fixa | 40% FIIs diversificados | 20% Ações dividendos
+└── "Balanceada Defensiva" (Conservador-Moderado, 5–10 anos)
+    50% RF | 35% FIIs | 15% Ações sólidas
+
+PREMIUM:
+├── "Crescimento Balanceado" (Moderado, 10+ anos)
+│   30% RF | 25% FIIs | 30% Ações BR | 15% ETF Internacional
+├── "Patrimônio Global" (Arrojado, 15+ anos)
+│   20% RF | 20% FIIs | 30% Ações BR | 30% ETFs Globais
+└── "Independência Financeira" (Qualquer perfil, 20+ anos)
+    20% RF Proteção | 30% FIIs | 25% Ações BR | 25% ETFs Globais
+Estrutura de cada card de carteira-modelo:
+
+
+
+┌─────────────────────────────────────────────────────┐
+│  🎯 CARTEIRA: Renda Mensal Iniciante                │
+│  Perfil: Moderado | Prazo: 5+ anos                  │
+├─────────────────────────────────────────────────────┤
+│  ALOCAÇÃO:                                          │
+│  ████████░░  40% Renda Fixa (Reserva + IPCA+)      │
+│  ████████░░  40% FIIs (Tijolo + Papel)              │
+│  ████░░░░░░  20% Ações (Dividendos + Blue Chips)   │
+├─────────────────────────────────────────────────────┤
+│  POR QUE ESTA COMPOSIÇÃO?                           │
+│  Baseado no princípio de dividendos de Barsi e      │
+│  na diversificação defensiva de Ray Dalio.          │
+├─────────────────────────────────────────────────────┤
+│  CENÁRIOS:                                          │
+│  Selic alta → RF mais atrativa → rebalancear        │
+│  Selic baixa → FIIs valorizam → manter              │
+│  Crise → RF protege → não venda FIIs/Ações         │
+├─────────────────────────────────────────────────────┤
+│  ⚠️ QUANDO NÃO USAR:                               │
+│  Se você não tem reserva de emergência ainda.       │
+│  Primeiro complete a Trilha 1.                      │
+├─────────────────────────────────────────────────────┤
+│  [📊 Simular esta carteira]  [📚 Ver aula de FIIs] │
+└─────────────────────────────────────────────────────┘
+BLOCO 6 — SIMULADOR (Escopo Completo por Plano)
+6.1. Simulador FREE — Renda Fixa Básica
+
+
+FUNCIONALIDADES:
+├── Aplicar saldo virtual em: Tesouro Selic, CDB CDI, LCI/LCA
+├── Taxas parametrizadas via API do Banco Central
+├── Projeção em 3 cenários (conservador / base / otimista)
+├── Comparativo: "Você vs. Poupança vs. CDI"
+├── Imposto estimado (tabela regressiva)
+├── Liquidez por produto (D+0 vs. vencimento)
+└── Gráfico de evolução patrimonial simples
+6.2. Simulador PLUS — FIIs + Renda Fixa Intermediária
+
+
+FUNCIONALIDADES ADICIONAIS:
+├── Simulação de carteira de FIIs (DY projetado, renda mensal)
+├── Comparativo por tipo de FII (Tijolo vs. Papel)
+├── Simulação de renda passiva mensal (quanto recebo por mês?)
+├── Impacto da Selic na carteira de FIIs (cenário dinâmico)
+├── Debêntures e CRI/CRA (rendimento vs. risco)
+└── Projeção de 5 e 10 anos com aportes mensais
+6.3. Simulador PREMIUM — Portfólio Completo
+
+
+FUNCIONALIDADES ADICIONAIS:
+├── Simulação de carteira de ações BR
+│   (indicadores fundamentalistas básicos, DY, histórico)
+├── Simulação de ETFs nacionais e internacionais
+├── Simulação de carteira global (BDRs + ETFs)
+├── Simulador "Primeiro Milhão"
+│   → quanto tempo para R$1M com X de aporte + Y de retorno?
+├── Modo "Crise": simular queda de 30% e ver recuperação histórica
+├── Comparativo de carteiras: "Sua carteira vs. carteira-modelo"
+├── Projeção de renda passiva para aposentadoria
+└── Exportar relatório em PDF (resumo da carteira simulada)
+BLOCO 7 — PLANOS E MONETIZAÇÃO
+7.1. Estrutura de Planos (Definitiva)
+
+
+╔══════════════════════════════════════════════════════════════╗
+║  🆓  FREE — Gratuito para sempre                            ║
+╠══════════════════════════════════════════════════════════════╣
+║  TRILHAS:                                                    ║
+║  ✅ Trilha 0 — Base Financeira (10 aulas)                   ║
+║  ✅ Trilha 1 — Renda Fixa Brasil (10 aulas)                 ║
+║                                                              ║
+║  IA E FERRAMENTAS:                                           ║
+║  ✅ Fazer Render+ IA Chat (10 perguntas/dia)                        ║
+║  ✅ Check-in diário com próximo passo                       ║
+║  ✅ Dicas básicas de renda extra (2x/semana)               ║
+║  ✅ Carteiras-modelo de renda fixa (visualização)           ║
+║  ✅ Simulador básico (Tesouro Selic + CDB)                 ║
+║  ✅ Diagnóstico financeiro + plano personalizado            ║
+║  ✅ Streak + badges das trilhas gratuitas                   ║
+║  ✅ Radar de Mercado básico (Selic/IPCA/CDI explicados)    ║
+╚══════════════════════════════════════════════════════════════╝
+
+╔══════════════════════════════════════════════════════════════╗
+║  💎  PLUS — R$29,90/mês | R$239/ano (~R$19,90/mês)         ║
+╠══════════════════════════════════════════════════════════════╣
+║  TUDO DO FREE, MAIS:                                         ║
+║                                                              ║
+║  TRILHAS:                                                    ║
+║  ✅ Trilha 2 — Fundos Imobiliários (10 aulas)               ║
+║  ✅ Trilha 3 — Renda Fixa Avançada e Carteira (10 aulas)   ║
+║                                                              ║
+║  IA E FERRAMENTAS:                                           ║
+║  ✅ Fazer Render+ IA Chat ilimitado                                 ║
+║  ✅ Carteiras-modelo Plus (renda mensal, proteção inflação) ║
+║  ✅ Simulador avançado: FIIs + Renda Fixa completa         ║
+║  ✅ Simulação de renda passiva mensal                       ║
+║  ✅ Boletim semanal personalizado (push + e-mail)          ║
+║  ✅ Mapa do Objetivo (planejamento por sonho/meta)          ║
+║  ✅ Dicas de renda extra avançadas (diário)                ║
+║  ✅ Protocolo diário de motivação completo                  ║
+║  ✅ Certificados das trilhas 2 e 3                          ║
+╚══════════════════════════════════════════════════════════════╝
+
+╔══════════════════════════════════════════════════════════════╗
+║  👑  PREMIUM — R$59,90/mês | R$479/ano (~R$39,90/mês)      ║
+╠══════════════════════════════════════════════════════════════╣
+║  TUDO DO PLUS, MAIS:                                         ║
+║                                                              ║
+║  TRILHAS:                                                    ║
+║  ✅ Trilha 4 — Ações Brasil (10 aulas)                      ║
+║  ✅ Trilha 5 — Ações Internacionais e Globais (10 aulas)   ║
+║  ✅ Trilha 6 — Portfólio Completo e Liberdade (10 aulas)   ║
+║  ✅ Módulo Especial — Renda Extra (8 mini-aulas)            ║
+║                                                              ║
+║  IA E FERRAMENTAS:                                           ║
+║  ✅ Simulador completo (todos os ativos + portfólio global) ║
+║  ✅ Simulador "Primeiro Milhão"                              ║
+║  ✅ Modo Crise (simular queda e recuperação)                ║
+║  ✅ Todas as carteiras-modelo (incluindo global)            ║
+║  ✅ Relatório de portfólio em PDF                           ║
+║  ✅ Jornadas Reais (histórias de brasileiros comuns)        ║
+║  ✅ 2 sessões/mês de mentoria em grupo ao vivo              ║
+║  ✅ Todos os certificados (7 trilhas + módulo especial)     ║
+║  ✅ Comunidade Premium exclusiva                            ║
+║  ✅ Acesso antecipado a novos conteúdos                     ║
+╚══════════════════════════════════════════════════════════════╝
+7.2. Funil de Conversão
+
+
+TOPO — Aquisição (Orgânico + Microinfluencers)
+              ↓
+CADASTRO FREE (sem cartão, zero fricção, 60 segundos)
+              ↓
+ENGAJAMENTO (streak, badges, progresso, check-in diário)
+              ↓
+GATILHOS DE UPGRADE (naturais, não invasivos):
+├── "Você terminou a Trilha 1! A Trilha de FIIs está no PLUS."
+├── "Simule FIIs? Disponível no PLUS por R$29,90/mês."
+├── "Fazer Render+ IA: 'Sua próxima aula é Premium. Trial 7 dias grátis.'"
+└── Barra de progresso mostrando o que está bloqueado
+              ↓
+TRIAL PREMIUM 7 DIAS (sem cobrança, sem cartão obrigatório)
+              ↓
+CONVERSÃO → PLUS ou PREMIUM
+              ↓
+RETENÇÃO (streak, boletim, comunidade, novas aulas mensais)
+              ↓
+EXPANSÃO (indicação, infoprodutos avulsos, mentoria 1:1)
+BLOCO 8 — GAMIFICAÇÃO E MOTIVAÇÃO
+8.1. Sistema Completo de Engajamento
+
+
+🔥 STREAK DIÁRIO
+├── Contador de dias consecutivos de login + aula
+├── 7 dias → Badge "Semana Vencida"
+├── 30 dias → 1 semana Plus grátis
+├── 100 dias → Badge lendário "Investidor Incansável"
+└── Notificação push às 20h se não logou: "Samuel, seu streak
+    está em risco! 5 minutos salvam seus 23 dias de sequência."
+
+🪙 FAZER RENDERCOINS (moeda interna)
+├── +10 por aula concluída
+├── +20 por quiz com 100% de acerto
+├── +50 por trilha completa
+├── +100 por projeto final entregue
+└── Uso: desbloquear aulas extras ou desconto na assinatura
+
+📊 SCORE FAZER RENDER+ (0–2000 pontos)
+├── Educação (500): trilhas e aulas concluídas
+├── Hábito (500): streak e frequência de login
+├── Prática (500): simulações realizadas e registradas
+└── Planejamento (500): metas definidas e atualizadas
+    ↓
+Níveis: Semente 🌱 → Muda 🌿 → Árvore 🌳 → Floresta 🌲 → Selva 🏆
+
+🏅 SISTEMA DE BADGES (40 conquistas)
+POR APRENDIZADO:
+├── "Poupança? Nunca mais" (Trilha 1 concluída)
+├── "Proprietário Inteligente" (Trilha 2 concluída)
+├── "Sócio Inteligente" (Trilha 4 concluída)
+└── "Investidor Global" (Trilha 5 concluída)
+POR COMPORTAMENTO:
+├── "Anti-Impulsivo" (usou calculadora Anti-Impulsividade 5x)
+├── "Aportes em Dia" (3 meses simulando aportes todo mês)
+└── "Leitor dos Mestres" (5 referências da KB consultadas)
+POR CONQUISTAS:
+├── "Primeiro Milhão Simulado"
+├── "Carteira Global Montada"
+└── "Renda Passiva de R$1.000/mês simulada"
+
+📜 CERTIFICADOS (PDF personalizado, compartilhável)
+├── Certificado por trilha (6 trilhas + módulo especial)
+├── Certificado "Investidor Fazer Render+ Completo"
+└── Compartilhável no LinkedIn, WhatsApp e Instagram
+BLOCO 9 — SITE WEB (Aquisição e SEO)
+9.1. Estrutura completa do site
+
+
+HOME
+├── Headline: "Do zero ao patrimônio. Com R$50 e uma IA ao seu lado."
+├── Subheadline: "Aprenda renda fixa, FIIs, ações e investimentos
+│   globais com base nos maiores investidores do mundo."
+├── CTA principal: "Começar grátis — instale em 30 segundos"
+├── Social proof: "X usuários já começaram sua jornada"
+├── Seção: "O que você vai aprender" (prévia das trilhas)
+├── Seção: "Baseado nos maiores" (logos dos mestres)
+├── Seção: "Como funciona" (3 passos: Aprenda, Simule, Invista)
+├── Depoimentos reais
+└── FAQ + CTA final
+
+/RADAR (Público e Gratuito — maior isca de SEO)
+├── Selic, CDI, IPCA, Dólar, Ibovespa (atualizados)
+├── "O que mudou essa semana e o que significa para você"
+├── Carteiras-modelo da semana (prévia)
+└── CTA: "Ver carteira completa → instalar o app grátis"
+
+/APRENDER
+├── Blog com 3 artigos/semana (SEO — palavras-chave de alto volume)
+│   Exemplos: "melhor investimento 2026", "como investir com pouco",
+│   "Tesouro Direto vale a pena", "o que são FIIs"
+└── Glossário financeiro (SEO de cauda longa)
+
+/FERRAMENTAS (isca digital gratuita)
+├── Calculadora de Juros Compostos
+├── Simulador de Reserva de Emergência
+├── Calculadora de Aposentadoria (Regra dos 4%)
+├── Comparador CDB vs. LCI vs. Poupança
+└── Teste gratuito de Perfil de Investidor
+
+/PLANOS
+├── Comparativo visual Free vs. Plus vs. Premium
+└── Checkout com Stripe + Pix
+
+/SOBRE
+└── Missão, visão, time, referências bibliográficas
+BLOCO 10 — ESTRATÉGIA DE AQUISIÇÃO: MICROINFLUENCERS
+10.1. Conceito e Modelo de Parceria
+Modelo híbrido: fee fixo (pelo conteúdo) + bônus por conversão via cupom rastreado.
+
+10.2. Critérios de Seleção
+
+
+PERFIL IDEAL:
+├── Seguidores: 5.000–200.000 (micro e médio)
+├── Engajamento: ≥ 3% real (comentários, DMs, enquetes)
+└── Nichos que convertem bem:
+    ├── 🎓 Concurseiros (disciplinados, perfil conservador)
+    ├── 🏠 Vida simples e frugalidade (já pensam em guardar)
+    ├── 👩‍💼 Carreira e primeiro emprego (momento de começar)
+    ├── 👩‍👧 Maternidade (preocupação com futuro dos filhos)
+    ├── 📊 Produtividade e organização (receptivos a apps)
+    ├── 💪 Saída de dívidas (dor clara e urgente)
+    └── 🎯 Empreendedorismo iniciante (renda variável)
+10.3. Pacotes de Parceria
+
+
+PACOTE MICRO (5k–30k seguidores)
+├── Entrega: 1 Reels (60–90s) + 3 Stories + link na bio 48h
+├── Fee fixo: R$150–R$400
+├── Bônus: R$15 por conversão para PLUS ou PREMIUM
+└── Cupom: ex. "JULIA10" (10 dias Premium grátis)
+
+PACOTE MÉDIO (30k–100k seguidores)
+├── Entrega: 1 Reels + 5 Stories + 1 carrossel + live 20min
+├── Fee fixo: R$500–R$1.500
+├── Bônus: R$20 por conversão
+└── Cupom + link UTM rastreado no Mixpanel
+
+PACOTE GRANDE (100k–250k seguidores)
+├── Entrega: 2 Reels + stories por 7 dias + live 30min
+├── Fee fixo: R$2.000–R$5.000
+├── Bônus: R$25 por conversão
+└── Parceria de 3 meses (recorrência de conteúdo)
+10.4. Ângulos de Copy que Convertem
+
+
+ÂNGULO 1 — "Você não é pobre demais para investir"
+"Com R$50 por mês você já pode começar a construir seu
+futuro. O Fazer Render+ te ensina do zero, com IA que explica
+como Buffett, Graham e Barsi pensam — em português, simples
+e gratuito para começar."
+
+ÂNGULO 2 — "O que os ricos sabem que ninguém te ensinou"
+"Os maiores investidores do mundo — Buffett, Graham, Barsi,
+Lynch, Bogle — deixaram tudo escrito. O Fazer Render+ transformou
+isso em aulas de 8 minutos para o brasileiro comum."
+
+ÂNGULO 3 — "A poupança te rouba todo mês"
+"A poupança rendeu abaixo da inflação por anos. Aprenda
+alternativas seguras e gratuitas no Fazer Render+ — Tesouro
+Direto em 10 minutos. Sem precisar de muito dinheiro."
+
+ÂNGULO 4 — "Sua IA de educação*
