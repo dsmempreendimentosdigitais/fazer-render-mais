@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from core.database import get_vector_store
 from core.config import settings
@@ -39,7 +39,12 @@ async def chat_with_ia(request: ChatRequest):
         docs = retriever.invoke(request.message)
         context_text = "\n\n".join([doc.page_content for doc in docs])
         
-        llm = ChatOpenAI(model="gpt-4o-mini", openai_api_key=settings.OPENAI_API_KEY)
+        llm = ChatGoogleGenerativeAI(
+            model="gemini-2.5-flash-preview-05-20",
+            google_api_key=settings.GOOGLE_API_KEY,
+            temperature=0.7,
+            max_output_tokens=2048,
+        )
         
         current_selic = get_current_macro_data()
         current_date = datetime.now().strftime("%d/%m/%Y")
