@@ -4,7 +4,7 @@ import { authOptions } from "@/lib/auth";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-    apiVersion: "2024-12-18.acacia",
+    apiVersion: "2026-02-25.clover",
 });
 
 export async function POST(req: Request) {
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
                             name: "Fazer Render+ " + plan,
                             description: plan === "PLUS" ? "Acesso total à Trilha de FIIs, Tutor Inteligente Ilimitado." : "Plano Premium Anual"
                         },
-                        unit_amount: plan === "PLUS" ? 2990 : 9990, // Em centavos (R$ 29,90)
+                        unit_amount: plan === "PLUS" ? 2990 : 4990, // Em centavos (R$ 29,90 ou R$ 49,90)
                         recurring: {
                             interval: "month"
                         }
