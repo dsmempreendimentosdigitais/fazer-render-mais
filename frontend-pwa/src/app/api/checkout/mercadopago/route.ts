@@ -35,10 +35,11 @@ export async function POST(req: Request) {
             body: {
                 items: [
                     {
+                        id: plan === "PLUS" ? "frm-plus" : "frm-premium",
                         title: "Fazer Render+ " + plan,
                         description: plan === "PLUS" ? "Acesso à Trilha FIIs Mensal" : "Acesso Premium",
                         quantity: 1,
-                        unit_price: plan === "PLUS" ? 29.90 : 99.90, // Real price in BRL format float, not cents
+                        unit_price: plan === "PLUS" ? 29.90 : 49.90,
                         currency_id: "BRL"
                     }
                 ],
