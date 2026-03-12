@@ -1,10 +1,13 @@
 from langchain_community.vectorstores import FAISS
-from langchain_openai import OpenAIEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from .config import settings
 import os
 
 def get_vector_store():
-    embeddings = OpenAIEmbeddings(openai_api_key=settings.OPENAI_API_KEY)
+    embeddings = GoogleGenerativeAIEmbeddings(
+        model="models/embedding-001",
+        google_api_key=settings.GOOGLE_API_KEY
+    )
     
     # Use FAISS for local test, load existing index if present
     if os.path.exists("faiss_index"):

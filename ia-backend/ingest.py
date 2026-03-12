@@ -29,9 +29,12 @@ def ingest_knowledge():
     logger.info("Connecting to Vector DB and ingesting...")
     try:
         from langchain_community.vectorstores import FAISS
-        from langchain_openai import OpenAIEmbeddings
+        from langchain_google_genai import GoogleGenerativeAIEmbeddings
         from core.config import settings
-        embeddings = OpenAIEmbeddings(openai_api_key=settings.OPENAI_API_KEY)
+        embeddings = GoogleGenerativeAIEmbeddings(
+            model="models/embedding-001",
+            google_api_key=settings.GOOGLE_API_KEY
+        )
         store = FAISS.from_documents(splits, embeddings)
         store.save_local("faiss_index")
         logger.info("Ingestion complete successfully using FAISS!")
