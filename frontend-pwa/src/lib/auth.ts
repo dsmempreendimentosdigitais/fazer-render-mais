@@ -37,6 +37,12 @@ export const authOptions: AuthOptions = {
                     throw new Error("Credenciais inválidas.");
                 }
 
+                // Update last login date
+                await prisma.user.update({
+                    where: { id: user.id },
+                    data: { lastLoginDate: new Date() }
+                });
+
                 // Return the user without the password hash
                 return user;
             }

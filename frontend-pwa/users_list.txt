@@ -1,0 +1,15 @@
+LISTA DE USUÁRIOS - FAZER RENDER+
+====================================
+
+1. premium@fazerrendermais.com.br
+   Nome: Usuário Premium
+   Plano: PREMIUM
+   Cadastro: 14/03/2026
+   Último Acesso: Nunca
+------------------------------------
+2. plus@fazerrendermais.com.br
+   Nome: Usuário Plus
+   Plano: PLUS
+   Cadastro: 14/03/2026
+   Último Acesso: Nunca
+------------------------------------

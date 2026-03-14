@@ -40,6 +40,20 @@ export default function ChatIA() {
                 .then(res => res.json())
                 .then(data => setUserData(data))
                 .catch(err => console.error(err));
+
+            // Carregar Histórico
+            fetch("/api/chat/history")
+                .then(res => res.json())
+                .then(data => {
+                    if (Array.isArray(data) && data.length > 0) {
+                        setMessages(data.map((m: any) => ({
+                            id: m.id,
+                            role: m.role,
+                            content: m.content
+                        })));
+                    }
+                })
+                .catch(err => console.error("Erro ao carregar histórico:", err));
         }
     }, [session]);
 
@@ -53,12 +67,10 @@ export default function ChatIA() {
         setLoading(true);
 
         try {
-            const apiIA = process.env.NEXT_PUBLIC_IA_URL || "http://localhost:8000";
-            const response = await fetch(`${apiIA}/api/chat/`, {
+            const response = await fetch("/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    user_id: session?.user?.id || "anonymous",
                     message: userText,
                     context: {
                         plan: userData?.plan || "FREE"
@@ -66,7 +78,7 @@ export default function ChatIA() {
                 })
             });
 
-            if (!response.ok) throw new Error("Erro de conexão com o Backend IA");
+            if (!response.ok) throw new Error("Erro de conexão com o servidor de chat");
 
             const data = await response.json();
 
@@ -84,7 +96,7 @@ export default function ChatIA() {
                 {
                     id: (Date.now() + 1).toString(),
                     role: "ai",
-                    content: "⚠️ Desculpe, o servidor da Inteligência Artificial está reiniciando ou offline no momento. Tente novamente em instantes."
+                    content: "⚠️ Desculpe, o servidor de chat está com dificuldades no momento. Tente novamente em instantes."
                 }
             ]);
         } finally {
