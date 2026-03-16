@@ -44,7 +44,7 @@ export default function Login() {
                     }
                 } else {
                     const data = await res.json();
-                    setError(data.error || "Ocorreu um erro ao criar a conta.");
+                    setError(data.error + (data.details ? ` (${data.details})` : "") || "Ocorreu um erro ao criar a conta.");
                 }
             } catch (err) {
                 setError("Falha na conexão.");
