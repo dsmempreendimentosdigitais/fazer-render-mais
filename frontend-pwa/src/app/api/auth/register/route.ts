@@ -39,8 +39,14 @@ export async function POST(req: Request) {
             { message: "Usuário criado com sucesso!", userId: user.id },
             { status: 201 }
         );
-    } catch (error) {
+    } catch (error: any) {
         console.error("Registrar erro:", error);
-        return NextResponse.json({ error: "Ocorreu um erro inesperado." }, { status: 500 });
+        return NextResponse.json(
+            { 
+                error: "Ocorreu um erro inesperado.", 
+                details: error.message || String(error) 
+            }, 
+            { status: 500 }
+        );
     }
 }
