@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, Target, Brain, Shield, HandCoins, Check } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Logo from "@/components/ui/Logo";
 
 const questions = [
     {
@@ -89,6 +90,10 @@ export default function Onboarding() {
     return (
         <div className="min-h-screen bg-[#0f172a] flex flex-col justify-center px-6 antialiased text-slate-50">
             <div className="max-w-xl mx-auto w-full">
+                {/* Branding Logo */}
+                <div className="flex justify-center mb-12">
+                    <Logo size="lg" />
+                </div>
                 {/* Progress Bar */}
                 <div className="mb-12">
                     <div className="flex justify-between text-sm font-semibold text-emerald-500 mb-3">

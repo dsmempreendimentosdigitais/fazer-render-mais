@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import Logo from "@/components/ui/Logo";
 
 export default function Dashboard() {
     const { data: session, status } = useSession();
@@ -53,13 +54,18 @@ export default function Dashboard() {
         <div className="min-h-screen bg-[#0f172a] text-slate-50 font-sans p-4 md:p-8 pb-32 overflow-x-hidden">
             <div className="max-w-4xl mx-auto space-y-8">
 
+                {/* Branding Logo */}
+                <div className="flex justify-start mb-2">
+                    <Logo size="lg" />
+                </div>
+
                 {/* Header (Greeting + Stats) */}
-                <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mt-4">
+                <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                     <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
                         <h1 className="text-3xl font-extrabold mb-1">
-                            Bom dia, <span className="text-emerald-400">{user.name}</span>! 👋
+                            Bem-vindo, <span className="text-emerald-400">{user.name}</span>! 👋
                         </h1>
-                        <p className="text-slate-400 text-sm md:text-base font-medium">Cada aula de hoje é um tijolo no seu futuro.</p>
+                        <p className="text-slate-400 text-sm md:text-base font-medium">Sua jornada rumo à liberdade financeira continua.</p>
 
                         {/* Logout & Reset Buttons */}
                         <div className="flex items-center gap-4 mt-2">

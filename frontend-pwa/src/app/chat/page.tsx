@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Send, Bot, User, ShieldCheck, Zap, BookOpen, ChevronRight, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSession } from "next-auth/react";
+import Logo from "@/components/ui/Logo";
 
 type Message = {
     id: string;
@@ -115,13 +116,10 @@ export default function ChatIA() {
                     >
                         <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-emerald-400 rotate-180" />
                     </button>
-                    <div className="w-12 h-12 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl flex items-center justify-center relative overflow-hidden p-1">
-                        <img src="/branding/icon.png" alt="Icon" className="w-full h-full object-contain" />
-                        <span className="w-2.5 h-2.5 bg-emerald-500 absolute bottom-1 right-1 rounded-full animate-pulse ring-2 ring-[#0f172a]"></span>
-                    </div>
-                    <div>
-                        <h1 className="font-bold text-lg leading-tight">Fazer Render+ IA</h1>
-                        <p className="text-xs text-emerald-400 font-medium tracking-wide">Tutor Educativo Online</p>
+                    <Logo size="md" />
+                    <div className="hidden sm:block">
+                        <h1 className="font-bold text-base leading-tight">Canal de Apoio</h1>
+                        <p className="text-[10px] text-emerald-400 font-medium tracking-wide">Especialista em Renda Fixa</p>
                     </div>
                 </div>
 
