@@ -114,6 +114,17 @@ export default function Onboarding() {
                         exit={{ x: -50, opacity: 0 }}
                         transition={{ duration: 0.3 }}
                     >
+                        <div className="flex items-center space-x-4 mb-4">
+                            {currentStep > 0 && (
+                                <button 
+                                    onClick={() => setCurrentStep(prev => prev - 1)}
+                                    className="text-slate-500 hover:text-emerald-400 transition flex items-center gap-1 text-sm font-bold"
+                                >
+                                    <ChevronRight className="w-4 h-4 rotate-180" />
+                                    Voltar
+                                </button>
+                            )}
+                        </div>
                         <h2 className="text-3xl md:text-4xl font-extrabold mb-8 leading-tight tracking-tight">
                             {question.title}
                         </h2>

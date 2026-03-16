@@ -31,18 +31,18 @@ export default function LandingPage() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
-            Investir não é só pra quem tem <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">muito dinheiro.</span>
+            Pare de apenas poupar. <br/>
+            Comece a <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Render de Verdade.</span>
           </h1>
 
           <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            A plataforma educativa mais completa do Brasil. Aprenda com uma inteligência artificial que traduz as estratégias dos maiores investidores do mundo para o seu bolso. Tudo começa com R$50.
+            A ponte entre o seu salário e a liberdade financeira. Uma inteligência artificial treinada pelos métodos de <b>Buffett e Graham</b>, pronta para guiar você do zero ao seu primeiro milhão.
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
             <Link href="/onboarding">
               <button className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-full text-lg font-bold shadow-lg shadow-emerald-500/30 transition-all flex items-center space-x-2 group">
-                <span>Começar Gratuitamente</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <span>Quero minha liberdade financeira agora →</span>
               </button>
             </Link>
           </div>
