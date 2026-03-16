@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 export const metadata: Metadata = {
   title: "Fazer Render+ | Do Zero ao Patrimônio",
   description: "A plataforma educativa mais completa do Brasil. Aprenda de forma prática, gamificada e baseada em dados reais.",
+  icons: {
+    icon: "/branding/icon.png",
+  },
 };
 
 export default function RootLayout({

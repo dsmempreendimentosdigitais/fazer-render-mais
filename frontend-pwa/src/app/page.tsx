@@ -9,10 +9,10 @@ export default function LandingPage() {
     <div className="min-h-screen bg-[#0f172a] text-slate-50 font-sans overflow-hidden">
       {/* Navbar Minimalist */}
       <nav className="glassmorphism fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center shadow-lg border-b border-slate-800">
-        <div className="text-2xl font-bold bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">
-          Fazer Render+
+        <div className="flex items-center">
+            <img src="/branding/logo-horizontal.png" alt="Fazer Render+" className="h-8 md:h-10 w-auto object-contain" />
         </div>
-        <Link href="/login" className="text-sm font-medium hover:text-emerald-400 transition-colors">
+        <Link href="/login" className="text-sm font-medium hover:text-emerald-400 transition-colors bg-emerald-500/10 px-4 py-2 rounded-xl border border-emerald-500/20">
           Entrar
         </Link>
       </nav>
