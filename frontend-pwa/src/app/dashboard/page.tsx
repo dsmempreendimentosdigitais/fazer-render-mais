@@ -61,13 +61,21 @@ export default function Dashboard() {
                         </h1>
                         <p className="text-slate-400 text-sm md:text-base font-medium">Cada aula de hoje é um tijolo no seu futuro.</p>
 
-                        {/* Logout Button */}
-                        <button
-                            onClick={() => signOut({ callbackUrl: '/login' })}
-                            className="text-xs text-rose-400 hover:text-rose-300 transition mt-2 font-bold underline decoration-rose-500/30 underline-offset-4"
-                        >
-                            Sair da conta
-                        </button>
+                        {/* Logout & Reset Buttons */}
+                        <div className="flex items-center gap-4 mt-2">
+                            <button
+                                onClick={() => signOut({ callbackUrl: '/login' })}
+                                className="text-xs text-rose-400 hover:text-rose-300 transition font-bold underline decoration-rose-500/30 underline-offset-4"
+                            >
+                                Sair da conta
+                            </button>
+                            <button
+                                onClick={() => router.push('/onboarding')}
+                                className="text-xs text-slate-500 hover:text-emerald-400 transition font-bold underline decoration-slate-500/30 underline-offset-4"
+                            >
+                                Refazer meu perfil
+                            </button>
+                        </div>
                     </motion.div>
 
                     {/* Gamification Badges */}
@@ -123,11 +131,12 @@ export default function Dashboard() {
                 {/* Trilhas de Aprendizado */}
                 <div className="space-y-4 pt-4">
                     <h2 className="text-xl font-extrabold flex items-center">
-                        <BookOpen className="w-5 h-5 mr-2 text-slate-400" /> Suas Trilhas
+                        <BookOpen className="w-5 h-5 mr-2 text-slate-400" /> Seu Ecossistema de Evolução
                     </h2>
+                    <p className="text-sm text-slate-400 font-medium">Desbloqueie novos níveis conforme sua jornada avança.</p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        {/* Trilha Ativa */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        {/* TRILHA 1: FREE */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
                             className="bg-[#1e293b] border border-emerald-500/50 p-6 rounded-3xl cursor-pointer hover:bg-slate-800 transition-colors relative overflow-hidden"
@@ -136,73 +145,99 @@ export default function Dashboard() {
 
                             <div className="flex justify-between items-start mb-4">
                                 <div>
-                                    <span className="text-emerald-400 text-xs font-bold tracking-widest uppercase mb-1 block">Iniciante • Gratuito</span>
-                                    <h3 className="text-xl font-extrabold text-white">TRILHA 1: Renda Fixa</h3>
+                                    <span className="text-emerald-400 text-[10px] font-black tracking-widest uppercase mb-1 block">Iniciante • ATIVO</span>
+                                    <h3 className="text-lg font-extrabold text-white">RENDA FIXA</h3>
                                 </div>
                                 <div className="bg-emerald-500/20 text-emerald-400 p-2 rounded-xl">
-                                    <Target className="w-6 h-6" />
+                                    <Target className="w-5 h-5" />
                                 </div>
                             </div>
 
-                            {/* Progress Bar */}
                             <div className="mb-4">
                                 <div className="flex justify-between text-xs font-bold text-slate-400 mb-2">
                                     <span>Progresso</span>
                                     <span className="text-emerald-400">{user.progressPercent}%</span>
                                 </div>
-                                <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
                                     <div className="bg-emerald-500 h-full rounded-full" style={{ width: `${user.progressPercent}%` }}></div>
                                 </div>
                             </div>
 
                             <Link href="/trilhas">
-                                <div className="flex justify-between items-center text-sm font-bold text-emerald-500 mt-4 pt-4 border-t border-slate-800">
-                                    <span>Continuar investindo</span>
+                                <div className="flex justify-between items-center text-xs font-bold text-emerald-500 mt-4 pt-4 border-t border-slate-800">
+                                    <span>Continuar</span>
                                     <ChevronRight className="w-4 h-4" />
                                 </div>
                             </Link>
                         </motion.div>
 
-                        {/* Trilha Bloqueada (Premium/Plus) */}
+                        {/* TRILHA 2: PLUS */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-                            className={`bg-[#1e293b]/50 border border-slate-800 p-6 rounded-3xl relative overflow-hidden ${user.plan === "FREE" ? "opacity-80" : ""}`}
+                            className={`bg-[#1e293b]/50 border border-slate-800 p-6 rounded-3xl relative overflow-hidden ${user.plan === "FREE" ? "group" : ""}`}
                         >
-                            {user.plan === "FREE" && (
-                                <Link href="/planos" className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-6 opacity-0 hover:opacity-100 transition-opacity cursor-pointer">
-                                    <Lock className="w-8 h-8 text-amber-500 mb-3" />
-                                    <span className="font-bold text-amber-500 mb-1">Desbloquear Trilha PLUS</span>
-                                    <p className="text-xs text-slate-300">Acelere seus resultados a partir de R$29,90</p>
-                                    <button className="mt-4 bg-amber-500 text-slate-900 px-4 py-2 rounded-lg font-bold text-xs">Ver Planos</button>
+                            {(user.plan === "FREE") && (
+                                <Link href="/planos" className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center text-center p-6 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                                    <Lock className="w-6 h-6 text-amber-500 mb-2" />
+                                    <span className="font-bold text-amber-500 text-sm">Nível PLUS</span>
+                                    <button className="mt-3 bg-amber-500 text-slate-900 px-4 py-2 rounded-lg font-black text-[10px] uppercase tracking-wider">Desbloquear</button>
                                 </Link>
                             )}
 
                             <div className="flex justify-between items-start mb-4">
                                 <div>
-                                    <span className="text-slate-500 text-xs font-bold tracking-widest uppercase mb-1 block">Intermediário • PLUS</span>
-                                    <h3 className="text-xl font-extrabold text-slate-300">TRILHA 2: FIIs</h3>
+                                    <span className="text-slate-500 text-[10px] font-bold tracking-widest uppercase mb-1 block">Intermediário • PLUS</span>
+                                    <h3 className="text-lg font-extrabold text-slate-300">FIIS & DIVIDENDOS</h3>
                                 </div>
                                 <div className="bg-slate-800 text-slate-500 p-2 rounded-xl">
-                                    {user.plan === "FREE" ? <Lock className="w-6 h-6" /> : <Target className="w-6 h-6 text-amber-500" />}
+                                    {user.plan === "FREE" ? <Lock className="w-5 h-5" /> : <Target className="w-5 h-5 text-amber-500" />}
                                 </div>
                             </div>
 
-                            <p className="text-slate-400 text-sm mb-4">
-                                Aprenda a receber aluguel todo mês na sua conta, isento de imposto, começando com R$10.
+                            <p className="text-slate-400 text-[11px] leading-relaxed mb-4">
+                                Aprenda a receber 'aluguéis' mensais isentos de IR e monte sua primeira máquina de renda passiva.
                             </p>
 
-                            <div className="flex justify-between items-center text-sm font-bold text-slate-500 mt-4 pt-4 border-t border-slate-800">
-                                {user.plan !== "FREE" ? (
-                                    <Link href="/trilhas" className="text-emerald-500 w-full flex items-center justify-between">
-                                        <span>Continuar investindo</span>
-                                        <ChevronRight className="w-4 h-4" />
-                                    </Link>
-                                ) : (
-                                    <Link href="/planos" className="w-full flex justify-between items-center text-amber-500/80 hover:text-amber-400">
-                                        <span>Ver planos de Assinatura</span>
-                                        <ChevronRight className="w-4 h-4" />
-                                    </Link>
-                                )}
+                            <div className="flex justify-between items-center text-xs font-bold text-slate-500 mt-4 pt-4 border-t border-slate-800">
+                                <Link href="/planos" className="w-full flex justify-between items-center hover:text-amber-400 transition-colors">
+                                    <span>{user.plan === "FREE" ? "Ver Benefícios" : "Acessar"}</span>
+                                    <ChevronRight className="w-4 h-4" />
+                                </Link>
+                            </div>
+                        </motion.div>
+
+                        {/* TRILHA 3: PREMIUM */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
+                            className={`bg-[#1e293b]/50 border border-slate-800 p-6 rounded-3xl relative overflow-hidden ${user.plan !== "PREMIUM" ? "group" : ""}`}
+                        >
+                            {(user.plan !== "PREMIUM") && (
+                                <Link href="/planos" className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center text-center p-6 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                                    <Lock className="w-6 h-6 text-emerald-400 mb-2" />
+                                    <span className="font-bold text-emerald-400 text-sm">Nível PREMIUM</span>
+                                    <button className="mt-3 bg-emerald-500 text-slate-900 px-4 py-2 rounded-lg font-black text-[10px] uppercase tracking-wider">Ir para o Topo</button>
+                                </Link>
+                            )}
+
+                            <div className="flex justify-between items-start mb-4">
+                                <div>
+                                    <span className="text-slate-500 text-[10px] font-bold tracking-widest uppercase mb-1 block">Avançado • PREMIUM</span>
+                                    <h3 className="text-lg font-extrabold text-slate-300">AÇÕES GLOBAIS</h3>
+                                </div>
+                                <div className="bg-slate-800 text-slate-500 p-2 rounded-xl">
+                                    {user.plan !== "PREMIUM" ? <Lock className="w-5 h-5" /> : <Star className="w-5 h-5 text-emerald-400" />}
+                                </div>
+                            </div>
+
+                            <p className="text-slate-400 text-[11px] leading-relaxed mb-4">
+                                O método Buffett para selecionar empresas vencedoras e proteger seu patrimônio com Dollar.
+                            </p>
+
+                            <div className="flex justify-between items-center text-xs font-bold text-slate-500 mt-4 pt-4 border-t border-slate-800">
+                                <Link href="/planos" className="w-full flex justify-between items-center hover:text-emerald-400 transition-colors">
+                                    <span>{user.plan === "PREMIUM" ? "Acessar" : "Vantagens Elite"}</span>
+                                    <ChevronRight className="w-4 h-4" />
+                                </Link>
                             </div>
                         </motion.div>
                     </div>
