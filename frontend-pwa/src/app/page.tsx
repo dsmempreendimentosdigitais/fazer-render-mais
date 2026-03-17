@@ -24,12 +24,12 @@ export default function LandingPage() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl"
         >
-          <div className="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full text-emerald-400 text-sm font-semibold mb-6">
+          <div className="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full text-emerald-400 text-[10px] md:text-sm font-semibold mb-8 mt-12 md:mt-20">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span>Do Zero ao Patrimônio</span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
             Pare de apenas poupar. <br/>
             Comece a <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Render de Verdade.</span>
           </h1>
