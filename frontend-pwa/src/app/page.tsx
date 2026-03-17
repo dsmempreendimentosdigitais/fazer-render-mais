@@ -17,7 +17,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <main className="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto flex flex-col items-center text-center">
+      <main className="pt-20 pb-16 px-6 md:px-12 max-w-7xl mx-auto flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -29,12 +29,12 @@ export default function LandingPage() {
             <span>Do Zero ao Patrimônio</span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
             Pare de apenas poupar. <br/>
             Comece a <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Render de Verdade.</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
             A ponte entre o seu salário e a liberdade financeira. Uma inteligência artificial treinada pelos métodos de <b>Buffett e Graham</b>, pronta para guiar você do zero ao seu primeiro milhão.
           </p>
 
@@ -48,7 +48,7 @@ export default function LandingPage() {
         </motion.div>
 
         {/* Features Cards */}
-        <div className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
           {[
             {
               icon: Brain,
