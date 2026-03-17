@@ -24,9 +24,9 @@ export default function Logo({ className = "", size = "md" }: LogoProps) {
     return (
         <Link href={href} className={`flex items-center transition-transform active:scale-95 ${className}`}>
             <img 
-                src="/branding/logo-horizontal-v2.png" 
+                src="/branding/logo-final.png" 
                 alt="Fazer Render+" 
-                className={`${sizeClasses[size]} w-auto object-contain`}
+                className={`${sizeClasses[size]} w-auto object-contain shadow-2xl shadow-emerald-500/5`}
             />
         </Link>
     );
