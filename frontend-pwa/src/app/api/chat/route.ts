@@ -24,6 +24,7 @@ export async function POST(req: Request) {
 
         // 2. Chamar Backend IA
         const apiIA = process.env.NEXT_PUBLIC_IA_URL || "http://localhost:8000";
+        console.log(`[Chat API] Connecting to IA at: ${apiIA}`);
         
         let aiReply = "";
         try {
@@ -35,19 +36,26 @@ export async function POST(req: Request) {
                     message,
                     context: context || {}
                 }),
-                // Timeout curto para não travar o frontend
-                signal: AbortSignal.timeout(8000) 
+                // Aumentando o timeout para 45s para lidar com o "acordar" do Render Free
+                signal: AbortSignal.timeout(45000) 
             });
 
             if (response.ok) {
                 const data = await response.json();
                 aiReply = data.reply;
             } else {
+                const errorText = await response.text();
+                console.error(`[Chat API] Erro no Backend IA (${response.status}):`, errorText);
                 aiReply = "Estou processando muitas informações no momento. Pode repetir a pergunta em alguns instantes?";
             }
-        } catch (fetchError) {
-            console.error("Erro ao conectar no Backend IA:", fetchError);
-            aiReply = "Desculpe, estou com dificuldades técnicas para me conectar ao meu cérebro principal no momento. Volte logo! (Nota: O servidor de IA pode estar offline)";
+        } catch (fetchError: any) {
+            console.error("[Chat API] Falha na requisição ao Backend IA:", fetchError);
+            
+            if (fetchError.name === 'TimeoutError') {
+                aiReply = "O 'cérebro' da IA está acordando (isso leva cerca de 30-50 segundos na primeira vez). Por favor, tente enviar sua mensagem novamente em instantes.";
+            } else {
+                aiReply = "Desculpe, estou com dificuldades técnicas para me conectar ao meu cérebro principal no momento. Volte logo! (Nota: O servidor de IA pode estar offline ou inacessível)";
+            }
         }
 
         // 3. Salvar resposta da IA (mesmo que seja o fallback)
