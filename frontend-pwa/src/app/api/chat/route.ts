@@ -23,7 +23,10 @@ export async function POST(req: Request) {
         });
 
         // 2. Chamar Backend IA
-        const apiIA = process.env.NEXT_PUBLIC_IA_URL || "http://localhost:8000";
+        let apiIA = process.env.NEXT_PUBLIC_IA_URL || "http://localhost:8000";
+        // Remover barra final se houver para evitar double slash
+        if (apiIA.endsWith("/")) apiIA = apiIA.slice(0, -1);
+        
         console.log(`[Chat API] Connecting to IA at: ${apiIA}`);
         
         let aiReply = "";
