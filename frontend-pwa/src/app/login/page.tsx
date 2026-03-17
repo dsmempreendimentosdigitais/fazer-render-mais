@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { PlayCircle, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
+import Logo from "@/components/ui/Logo";
 
 export default function Login() {
     const router = useRouter();
@@ -69,11 +70,9 @@ export default function Login() {
 
     return (
         <div className="min-h-screen bg-[#0f172a] text-slate-50 flex flex-col justify-center items-center p-6 antialiased">
-            <Link href="/">
-                <div className="absolute top-8 left-8 text-2xl font-bold bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent hover:opacity-80 transition cursor-pointer">
-                    Fazer Render+
-                </div>
-            </Link>
+            <div className="absolute top-8 left-8">
+                <Logo size="md" />
+            </div>
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}

@@ -15,19 +15,17 @@ export default function Logo({ className = "", size = "md" }: LogoProps) {
     const href = session ? "/dashboard" : "/";
 
     const sizeClasses = {
-        sm: "h-8",
-        md: "h-12",
-        lg: "h-16",
-        xl: "h-24"
+        sm: "text-xl",
+        md: "text-2xl",
+        lg: "text-3xl",
+        xl: "text-4xl"
     };
 
     return (
-        <Link href={href} className={`flex items-center transition-transform active:scale-95 ${className}`}>
-            <img 
-                src="/branding/logo-final.png" 
-                alt="Fazer Render+" 
-                className={`${sizeClasses[size]} w-auto object-contain shadow-2xl shadow-emerald-500/5`}
-            />
+        <Link href={href} className={`flex items-center transition-all active:scale-95 hover:opacity-80 ${className}`}>
+            <span className={`${sizeClasses[size]} font-black tracking-tight bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent select-none`}>
+                Fazer Render+
+            </span>
         </Link>
     );
 }
