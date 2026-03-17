@@ -32,7 +32,7 @@ def ingest_knowledge():
         from langchain_google_genai import GoogleGenerativeAIEmbeddings
         from core.config import settings
         embeddings = GoogleGenerativeAIEmbeddings(
-            model="models/embedding-001",
+            model="text-embedding-004",
             google_api_key=settings.GOOGLE_API_KEY
         )
         store = FAISS.from_documents(splits, embeddings)
