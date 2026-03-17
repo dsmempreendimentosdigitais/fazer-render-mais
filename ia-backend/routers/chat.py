@@ -40,7 +40,7 @@ async def chat_with_ia(request: ChatRequest):
         context_text = "\n\n".join([doc.page_content for doc in docs])
         
         llm = ChatGoogleGenerativeAI(
-            model="gemini-2.5-flash-preview-05-20",
+            model="gemini-1.5-flash",
             google_api_key=settings.GOOGLE_API_KEY,
             temperature=0.7,
             max_output_tokens=2048,
@@ -100,4 +100,5 @@ async def chat_with_ia(request: ChatRequest):
         return ChatResponse(reply=response.content)
     except Exception as e:
         logger.error(f"Error in chat endpoint: {e}")
-        return ChatResponse(reply="Desculpe, estou com dificuldades técnicas no momento. Volte logo!")
+        # Retornando o erro em desenvolvimento/debug para facilitar a vida do usuário
+        return ChatResponse(reply=f"⚠️ Erro Interno na IA (Backend): {str(e)}")
