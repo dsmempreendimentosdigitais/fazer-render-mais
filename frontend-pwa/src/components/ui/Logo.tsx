@@ -15,18 +15,18 @@ export default function Logo({ className = "", size = "md" }: LogoProps) {
     const href = session ? "/dashboard" : "/";
 
     const sizeClasses = {
-        sm: "h-6",
-        md: "h-10",
-        lg: "h-14",
-        xl: "h-20"
+        sm: "h-8",
+        md: "h-12",
+        lg: "h-16",
+        xl: "h-24"
     };
 
     return (
         <Link href={href} className={`flex items-center transition-transform active:scale-95 ${className}`}>
             <img 
-                src="/branding/logo-horizontal-v2.png" 
+                src="/branding/logo-transparent.png" 
                 alt="Fazer Render+" 
-                className={`${sizeClasses[size]} w-auto object-contain drop-shadow-[0_0_15px_rgba(16,185,129,0.2)]`}
+                className={`${sizeClasses[size]} w-auto object-contain drop-shadow-sm`}
             />
         </Link>
     );
