@@ -40,7 +40,7 @@ async def chat_with_ia(request: ChatRequest):
         context_text = "\n\n".join([doc.page_content for doc in docs])
         
         llm = ChatGoogleGenerativeAI(
-            model="gemini-1.5-flash",
+            model="gemini-2.5-flash",
             google_api_key=settings.GOOGLE_API_KEY,
             temperature=0.7,
             max_output_tokens=2048,
