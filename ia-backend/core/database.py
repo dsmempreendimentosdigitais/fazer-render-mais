@@ -7,7 +7,7 @@ def get_vector_store():
     print(f"DEBUG: Initializing Vector Store with API Key starting with: {settings.GOOGLE_API_KEY[:5]}...")
     try:
         embeddings = GoogleGenerativeAIEmbeddings(
-            model="text-embedding-004",
+            model="gemini-embedding-001",
             google_api_key=settings.GOOGLE_API_KEY
         )
         
