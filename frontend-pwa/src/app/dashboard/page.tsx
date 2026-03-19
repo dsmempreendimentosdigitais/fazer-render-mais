@@ -134,6 +134,16 @@ export default function Dashboard() {
                     </div>
                 </motion.div>
 
+                {/* Motivational Value Banner */}
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+                    className="bg-[#1e293b]/60 border border-slate-800 p-5 rounded-2xl"
+                >
+                    <p className="text-slate-300 text-sm md:text-base leading-relaxed text-center font-medium">
+                        ✨ <strong className="text-white">Somente vídeos e informações essenciais.</strong> Um plano passo a passo para você <span className="text-emerald-400 font-bold">fazer render mais</span> seus ganhos e <span className="text-emerald-400 font-bold">fazer crescer</span> seu patrimônio de forma simples e segura.
+                    </p>
+                </motion.div>
+
                 {/* Trilhas de Aprendizado */}
                 <div className="space-y-4 pt-4">
                     <h2 className="text-xl font-extrabold flex items-center">

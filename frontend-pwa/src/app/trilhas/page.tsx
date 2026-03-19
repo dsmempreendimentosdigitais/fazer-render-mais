@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PlayCircle, Award, CheckCircle2, ChevronLeft, Map, HelpCircle, ChevronRight, Lock } from "lucide-react";
+import { PlayCircle, Award, CheckCircle2, ChevronLeft, Map, HelpCircle, ChevronRight, Lock, Bot, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
@@ -27,7 +27,7 @@ const lessons: Record<string, Lesson> = {
         title: "Reserva de Emergência: O Primeiro Passo",
         duration: "12 min",
         description: "Aprenda como montar sua reserva de emergência do jeito certo e nunca mais ficar vulnerável a imprevistos financeiros.",
-        videoId: "gyMFcRwKs9M",
+        videoId: "egtTW_zvqJM",
         trilha: "1",
         trilhaLabel: "TRILHA 1: RENDA FIXA",
         nextLessonId: "1.2",
@@ -39,43 +39,43 @@ const lessons: Record<string, Lesson> = {
         title: "Poupança vs Tesouro Direto: A Verdade",
         duration: "15 min",
         description: "Descubra por que a poupança está te fazendo perder dinheiro e como o Tesouro Direto pode mudar sua vida financeira.",
-        videoId: "PiDASlYBArE",
+        videoId: "y2sBkIX72-g",
         trilha: "1",
         trilhaLabel: "TRILHA 1: RENDA FIXA",
         nextLessonId: "1.3",
-        nextLessonTitle: "Tesouro Selic na Prática",
+        nextLessonTitle: "Tesouro Direto Completo",
         requiredPlan: "FREE",
     },
     "1.3": {
         id: "1.3",
-        title: "Tesouro Selic: O Melhor Amigo da Reserva",
-        duration: "10 min",
-        description: "Descubra como proteger seu dinheiro da inflação com o investimento mais seguro do Brasil. Adeus, poupança!",
-        videoId: "kODaewL7GJQ",
+        title: "Tesouro Direto Completo: Selic, IPCA+ e Prefixado",
+        duration: "18 min",
+        description: "Aula completa sobre todos os títulos do Tesouro Direto: Selic, IPCA+ e Prefixado. Qual é melhor para cada objetivo?",
+        videoId: "OOEssu7j5UQ",
         trilha: "1",
         trilhaLabel: "TRILHA 1: RENDA FIXA",
         nextLessonId: "1.4",
-        nextLessonTitle: "Tesouro IPCA+",
+        nextLessonTitle: "CDB: Como Escolher o Ideal",
         requiredPlan: "FREE",
     },
     "1.4": {
         id: "1.4",
-        title: "Tesouro IPCA+: Proteja-se da Inflação",
-        duration: "11 min",
-        description: "Entenda como o Tesouro IPCA+ garante que seu dinheiro sempre ganhe da inflação, ideal para objetivos de longo prazo.",
-        videoId: "_pVEyRMadtU",
+        title: "CDB: Como Escolher o Ideal para Você",
+        duration: "14 min",
+        description: "Aprenda a comparar CDBs e escolher o que melhor se encaixa nos seus objetivos. Passo a passo prático para investir com pouco.",
+        videoId: "yr2-aZoOvlQ",
         trilha: "1",
         trilhaLabel: "TRILHA 1: RENDA FIXA",
         nextLessonId: "1.5",
-        nextLessonTitle: "CDB: Como Escolher o Melhor",
+        nextLessonTitle: "Poupança vs CDB vs Tesouro",
         requiredPlan: "FREE",
     },
     "1.5": {
         id: "1.5",
-        title: "CDB: Como Comparar e Escolher o Melhor",
-        duration: "9 min",
-        description: "Aprenda a comparar CDBs de diferentes bancos e escolher o que melhor se encaixa nos seus objetivos de investimento.",
-        videoId: "WukvkWHuu1Q",
+        title: "Poupança vs CDB vs Tesouro: Teste Real de 1 Ano",
+        duration: "16 min",
+        description: "Veja o resultado real de R$1.000 investidos na poupança, CDB e Tesouro Direto por 1 ano. Qual rendeu mais?",
+        videoId: "piCLfWcA1JU",
         trilha: "1",
         trilhaLabel: "TRILHA 1: RENDA FIXA",
         nextLessonId: null,
@@ -88,7 +88,7 @@ const lessons: Record<string, Lesson> = {
         title: "Fundos Imobiliários: O Que São e Como Funcionam",
         duration: "14 min",
         description: "Entenda o que são FIIs, como eles geram renda passiva mensal e por que são isentos de Imposto de Renda para pessoa física.",
-        videoId: "sHjUDw4nknc",
+        videoId: "nQVYluPiZdA",
         trilha: "2",
         trilhaLabel: "TRILHA 2: FIIs & DIVIDENDOS",
         nextLessonId: "2.2",
@@ -100,7 +100,7 @@ const lessons: Record<string, Lesson> = {
         title: "FIIs: Guia Completo para Iniciantes",
         duration: "20 min",
         description: "Um guia passo a passo sobre como escolher, analisar e investir em Fundos Imobiliários mesmo com pouco dinheiro.",
-        videoId: "TURBTHelAew",
+        videoId: "gOuYvRw5kE4",
         trilha: "2",
         trilhaLabel: "TRILHA 2: FIIs & DIVIDENDOS",
         nextLessonId: "2.3",
@@ -112,7 +112,7 @@ const lessons: Record<string, Lesson> = {
         title: "Como Analisar um FII como Profissional",
         duration: "18 min",
         description: "Aprenda os indicadores essenciais (P/VP, DY, Vacância) para analisar Fundos Imobiliários e montar uma carteira sólida.",
-        videoId: "2VJ-HWPmSPo",
+        videoId: "BpEbmjv7Z9o",
         trilha: "2",
         trilhaLabel: "TRILHA 2: FIIs & DIVIDENDOS",
         nextLessonId: null,
@@ -125,7 +125,7 @@ const lessons: Record<string, Lesson> = {
         title: "Bolsa de Valores: Do Zero ao Primeiro Investimento",
         duration: "16 min",
         description: "Entenda como funciona a Bolsa de Valores brasileira (B3), o que são ações e como dar seus primeiros passos como investidor.",
-        videoId: "VIBE7VuUT9Y",
+        videoId: "jJFVKgHr3BA",
         trilha: "3",
         trilhaLabel: "TRILHA 3: AÇÕES GLOBAIS",
         nextLessonId: "3.2",
@@ -137,7 +137,7 @@ const lessons: Record<string, Lesson> = {
         title: "Como Comprar sua Primeira Ação na Prática",
         duration: "13 min",
         description: "Acompanhe o passo a passo real de como abrir conta na corretora e comprar sua primeira ação na B3.",
-        videoId: "K_yE4dPY7HI",
+        videoId: "6B7PGZ0l8TQ",
         trilha: "3",
         trilhaLabel: "TRILHA 3: AÇÕES GLOBAIS",
         nextLessonId: "3.3",
@@ -149,7 +149,7 @@ const lessons: Record<string, Lesson> = {
         title: "ETFs: Diversificação Global com Um Clique",
         duration: "15 min",
         description: "Descubra como investir no mundo inteiro através de ETFs, a forma mais inteligente de diversificar seu patrimônio.",
-        videoId: "nS4H_YkEFnE",
+        videoId: "EJ11Rm6oJcE",
         trilha: "3",
         trilhaLabel: "TRILHA 3: AÇÕES GLOBAIS",
         nextLessonId: null,
@@ -243,6 +243,20 @@ function LessonPlayer() {
                             {currentLesson.description}
                         </p>
                     </div>
+
+                    {/* Motivational Tip */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5 }}
+                        className="bg-gradient-to-r from-emerald-500/5 to-cyan-500/5 border border-emerald-500/20 rounded-2xl p-4 flex items-start gap-3"
+                    >
+                        <Sparkles className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                        <p className="text-sm text-slate-300 leading-relaxed">
+                            <strong className="text-emerald-400">Você está investindo em conhecimento.</strong>{" "}
+                            Somente vídeos e informações essenciais. Um plano passo a passo para fazer seu dinheiro render mais e crescer seu patrimônio de forma simples e segura.
+                        </p>
+                    </motion.div>
                 </div>
 
                 {/* Right Column: Sidebar */}
@@ -281,6 +295,17 @@ function LessonPlayer() {
                                     <svg className="w-5 h-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>
                                 </div>
                                 Simular no Calculador
+                            </Link>
+
+                            {/* AI Chat Button */}
+                            <Link href={`/chat?contexto=${encodeURIComponent(currentLesson.trilhaLabel + ' - ' + currentLesson.title)}`} className="w-full p-4 rounded-xl flex items-center bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/30 hover:from-emerald-500/20 hover:to-cyan-500/20 text-emerald-400 font-bold transition-all group block text-left">
+                                <div className="p-1.5 bg-emerald-500/20 rounded-lg mr-3 group-hover:scale-110 transition-transform">
+                                    <Bot className="w-5 h-5 text-emerald-400" />
+                                </div>
+                                <div className="flex flex-col">
+                                    <span>Tirar Dúvida com IA</span>
+                                    <span className="text-[10px] text-slate-500 font-normal">Pergunte sobre esta aula</span>
+                                </div>
                             </Link>
                         </div>
 
