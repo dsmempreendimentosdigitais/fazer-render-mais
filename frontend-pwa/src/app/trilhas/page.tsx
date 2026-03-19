@@ -1,20 +1,188 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PlayCircle, Award, CheckCircle2, ChevronLeft, Map, HelpCircle } from "lucide-react";
+import { PlayCircle, Award, CheckCircle2, ChevronLeft, Map, HelpCircle, ChevronRight, Lock } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Logo from "@/components/ui/Logo";
 
-const lessonData = {
-    title: "1.3 Tesouro Selic: O melhor amigo da reserva de emergência",
-    duration: "6 min",
-    description: "Descubra como proteger seu dinheiro da inflação com o investimento mais seguro do Brasil. Adeus, poupança!",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder
+// ── Lesson Data ──────────────────────────────────────────────────────
+interface Lesson {
+    id: string;
+    title: string;
+    duration: string;
+    description: string;
+    videoId: string; // YouTube video ID
+    trilha: string;
+    trilhaLabel: string;
+    nextLessonId: string | null;
+    nextLessonTitle: string | null;
+    requiredPlan: "FREE" | "PLUS" | "PREMIUM";
+}
+
+const lessons: Record<string, Lesson> = {
+    "1.1": {
+        id: "1.1",
+        title: "Reserva de Emergência: O Primeiro Passo",
+        duration: "12 min",
+        description: "Aprenda como montar sua reserva de emergência do jeito certo e nunca mais ficar vulnerável a imprevistos financeiros.",
+        videoId: "gyMFcRwKs9M",
+        trilha: "1",
+        trilhaLabel: "TRILHA 1: RENDA FIXA",
+        nextLessonId: "1.2",
+        nextLessonTitle: "Poupança vs Tesouro Direto",
+        requiredPlan: "FREE",
+    },
+    "1.2": {
+        id: "1.2",
+        title: "Poupança vs Tesouro Direto: A Verdade",
+        duration: "15 min",
+        description: "Descubra por que a poupança está te fazendo perder dinheiro e como o Tesouro Direto pode mudar sua vida financeira.",
+        videoId: "PiDASlYBArE",
+        trilha: "1",
+        trilhaLabel: "TRILHA 1: RENDA FIXA",
+        nextLessonId: "1.3",
+        nextLessonTitle: "Tesouro Selic na Prática",
+        requiredPlan: "FREE",
+    },
+    "1.3": {
+        id: "1.3",
+        title: "Tesouro Selic: O Melhor Amigo da Reserva",
+        duration: "10 min",
+        description: "Descubra como proteger seu dinheiro da inflação com o investimento mais seguro do Brasil. Adeus, poupança!",
+        videoId: "kODaewL7GJQ",
+        trilha: "1",
+        trilhaLabel: "TRILHA 1: RENDA FIXA",
+        nextLessonId: "1.4",
+        nextLessonTitle: "Tesouro IPCA+",
+        requiredPlan: "FREE",
+    },
+    "1.4": {
+        id: "1.4",
+        title: "Tesouro IPCA+: Proteja-se da Inflação",
+        duration: "11 min",
+        description: "Entenda como o Tesouro IPCA+ garante que seu dinheiro sempre ganhe da inflação, ideal para objetivos de longo prazo.",
+        videoId: "_pVEyRMadtU",
+        trilha: "1",
+        trilhaLabel: "TRILHA 1: RENDA FIXA",
+        nextLessonId: "1.5",
+        nextLessonTitle: "CDB: Como Escolher o Melhor",
+        requiredPlan: "FREE",
+    },
+    "1.5": {
+        id: "1.5",
+        title: "CDB: Como Comparar e Escolher o Melhor",
+        duration: "9 min",
+        description: "Aprenda a comparar CDBs de diferentes bancos e escolher o que melhor se encaixa nos seus objetivos de investimento.",
+        videoId: "WukvkWHuu1Q",
+        trilha: "1",
+        trilhaLabel: "TRILHA 1: RENDA FIXA",
+        nextLessonId: null,
+        nextLessonTitle: null,
+        requiredPlan: "FREE",
+    },
+    // ── Trilha 2: FIIs (PLUS) ──
+    "2.1": {
+        id: "2.1",
+        title: "Fundos Imobiliários: O Que São e Como Funcionam",
+        duration: "14 min",
+        description: "Entenda o que são FIIs, como eles geram renda passiva mensal e por que são isentos de Imposto de Renda para pessoa física.",
+        videoId: "sHjUDw4nknc",
+        trilha: "2",
+        trilhaLabel: "TRILHA 2: FIIs & DIVIDENDOS",
+        nextLessonId: "2.2",
+        nextLessonTitle: "Guia Completo para Iniciantes",
+        requiredPlan: "PLUS",
+    },
+    "2.2": {
+        id: "2.2",
+        title: "FIIs: Guia Completo para Iniciantes",
+        duration: "20 min",
+        description: "Um guia passo a passo sobre como escolher, analisar e investir em Fundos Imobiliários mesmo com pouco dinheiro.",
+        videoId: "TURBTHelAew",
+        trilha: "2",
+        trilhaLabel: "TRILHA 2: FIIs & DIVIDENDOS",
+        nextLessonId: "2.3",
+        nextLessonTitle: "Como Analisar um FII",
+        requiredPlan: "PLUS",
+    },
+    "2.3": {
+        id: "2.3",
+        title: "Como Analisar um FII como Profissional",
+        duration: "18 min",
+        description: "Aprenda os indicadores essenciais (P/VP, DY, Vacância) para analisar Fundos Imobiliários e montar uma carteira sólida.",
+        videoId: "2VJ-HWPmSPo",
+        trilha: "2",
+        trilhaLabel: "TRILHA 2: FIIs & DIVIDENDOS",
+        nextLessonId: null,
+        nextLessonTitle: null,
+        requiredPlan: "PLUS",
+    },
+    // ── Trilha 3: Ações Globais (PREMIUM) ──
+    "3.1": {
+        id: "3.1",
+        title: "Bolsa de Valores: Do Zero ao Primeiro Investimento",
+        duration: "16 min",
+        description: "Entenda como funciona a Bolsa de Valores brasileira (B3), o que são ações e como dar seus primeiros passos como investidor.",
+        videoId: "VIBE7VuUT9Y",
+        trilha: "3",
+        trilhaLabel: "TRILHA 3: AÇÕES GLOBAIS",
+        nextLessonId: "3.2",
+        nextLessonTitle: "Como Comprar sua Primeira Ação",
+        requiredPlan: "PREMIUM",
+    },
+    "3.2": {
+        id: "3.2",
+        title: "Como Comprar sua Primeira Ação na Prática",
+        duration: "13 min",
+        description: "Acompanhe o passo a passo real de como abrir conta na corretora e comprar sua primeira ação na B3.",
+        videoId: "K_yE4dPY7HI",
+        trilha: "3",
+        trilhaLabel: "TRILHA 3: AÇÕES GLOBAIS",
+        nextLessonId: "3.3",
+        nextLessonTitle: "ETFs e Diversificação Global",
+        requiredPlan: "PREMIUM",
+    },
+    "3.3": {
+        id: "3.3",
+        title: "ETFs: Diversificação Global com Um Clique",
+        duration: "15 min",
+        description: "Descubra como investir no mundo inteiro através de ETFs, a forma mais inteligente de diversificar seu patrimônio.",
+        videoId: "nS4H_YkEFnE",
+        trilha: "3",
+        trilhaLabel: "TRILHA 3: AÇÕES GLOBAIS",
+        nextLessonId: null,
+        nextLessonTitle: null,
+        requiredPlan: "PREMIUM",
+    },
 };
 
-export default function LessonPlayer() {
+// ── Component ────────────────────────────────────────────────────────
+export default function LessonPlayerPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-[#0f172a] flex items-center justify-center"><div className="w-10 h-10 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin" /></div>}>
+            <LessonPlayer />
+        </Suspense>
+    );
+}
+
+function LessonPlayer() {
+    const searchParams = useSearchParams();
+    const aulaParam = searchParams.get("aula") || "1.1";
+    const currentLesson = lessons[aulaParam] || lessons["1.1"];
+
     const [completed, setCompleted] = useState(false);
+
+    // Get all lessons for the current trilha for the sidebar
+    const trilhaLessons = Object.values(lessons).filter(l => l.trilha === currentLesson.trilha);
+
+    const trilhaColors: Record<string, { accent: string; bg: string; border: string; text: string }> = {
+        "1": { accent: "emerald", bg: "bg-emerald-500/10", border: "border-emerald-500/30", text: "text-emerald-400" },
+        "2": { accent: "amber", bg: "bg-amber-500/10", border: "border-amber-500/30", text: "text-amber-400" },
+        "3": { accent: "violet", bg: "bg-violet-500/10", border: "border-violet-500/30", text: "text-violet-400" },
+    };
+    const colors = trilhaColors[currentLesson.trilha] || trilhaColors["1"];
 
     return (
         <div className="min-h-screen bg-[#0f172a] text-slate-50 flex flex-col font-sans">
@@ -22,7 +190,7 @@ export default function LessonPlayer() {
             <header className="px-6 py-4 glassmorphism border-b border-slate-800 flex items-center justify-between sticky top-0 z-10">
                 <Link href="/dashboard" className="flex items-center text-slate-400 hover:text-emerald-400 transition-colors">
                     <ChevronLeft className="w-5 h-5 mr-1" />
-                    <span className="font-medium">Voltar para Trilha 1</span>
+                    <span className="font-medium">Voltar ao Dashboard</span>
                 </Link>
 
                 <div className="hidden sm:block">
@@ -37,53 +205,56 @@ export default function LessonPlayer() {
                 </div>
             </header>
 
-            <main className="flex-1 max-w-5xl mx-auto w-full p-6 md:p-8 flex flex-col lg:flex-row gap-8">
+            <main className="flex-1 max-w-6xl mx-auto w-full p-6 md:p-8 flex flex-col lg:flex-row gap-8">
                 {/* Left Column: Video & Info */}
                 <div className="flex-1 space-y-6">
+                    {/* YouTube Video Player */}
                     <motion.div
+                        key={currentLesson.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="w-full aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl shadow-emerald-500/5 relative group border border-slate-800"
+                        className="w-full aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl shadow-emerald-500/5 border border-slate-800"
                     >
-                        {/* Fake Player Overlay */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-slate-900/80 to-transparent z-10">
-                            <button className="w-20 h-20 bg-emerald-500/90 text-white rounded-full flex items-center justify-center hover:bg-emerald-400 transition-all hover:scale-105 shadow-xl shadow-emerald-500/30">
-                                <PlayCircle className="w-10 h-10 ml-1" />
-                            </button>
-                        </div>
-                        {/* The pseudo video element */}
-                        <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center opacity-60 mix-blend-luminosity"></div>
+                        <iframe
+                            src={`https://www.youtube.com/embed/${currentLesson.videoId}?rel=0&modestbranding=1`}
+                            title={currentLesson.title}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                            className="w-full h-full"
+                        />
                     </motion.div>
 
+                    {/* Lesson Info */}
                     <div>
                         <div className="flex items-center space-x-3 mb-3">
-                            <span className="bg-slate-800 text-slate-300 text-xs font-bold px-2.5 py-1 rounded-md">
-                                TRILHA 1: RENDA FIXA
+                            <span className={`${colors.bg} ${colors.text} text-xs font-bold px-2.5 py-1 rounded-md border ${colors.border}`}>
+                                {currentLesson.trilhaLabel}
                             </span>
                             <span className="text-slate-400 text-sm flex items-center">
-                                <PlayCircle className="w-4 h-4 mr-1" /> {lessonData.duration}
+                                <PlayCircle className="w-4 h-4 mr-1" /> {currentLesson.duration}
                             </span>
                         </div>
 
                         <h1 className="text-3xl font-extrabold text-white mb-4 leading-tight">
-                            {lessonData.title}
+                            {currentLesson.title}
                         </h1>
 
                         <p className="text-slate-400 text-lg leading-relaxed">
-                            {lessonData.description}
+                            {currentLesson.description}
                         </p>
                     </div>
                 </div>
 
-                {/* Right Column: Next Steps / Exercises */}
+                {/* Right Column: Sidebar */}
                 <div className="w-full lg:w-80 space-y-6">
-                    <div className="bg-[#1e293b] rounded-3xl p-6 border border-slate-800 h-full flex flex-col">
+                    <div className="bg-[#1e293b] rounded-3xl p-6 border border-slate-800 flex flex-col">
                         <h3 className="text-xl font-bold mb-6 flex items-center">
                             <Map className="w-5 h-5 mr-2 text-emerald-400" />
                             Sua Jornada
                         </h3>
 
-                        <div className="space-y-4 flex-1">
+                        {/* Actions */}
+                        <div className="space-y-4 mb-6">
                             <button
                                 onClick={() => setCompleted(!completed)}
                                 className={`w-full p-4 rounded-xl flex items-center justify-between font-bold transition-all border ${completed
@@ -98,37 +269,76 @@ export default function LessonPlayer() {
                                 {completed && <span className="text-xs font-extrabold bg-emerald-500/20 px-2 py-1 rounded-md">+10 Coins</span>}
                             </button>
 
-                            <button className="w-full p-4 rounded-xl flex items-center bg-slate-800/50 border border-slate-700 hover:bg-slate-800 text-slate-300 font-bold transition-all group disabled:opacity-50">
+                            <button className="w-full p-4 rounded-xl flex items-center bg-slate-800/50 border border-slate-700 hover:bg-slate-800 text-slate-300 font-bold transition-all group">
                                 <div className="p-1.5 bg-slate-700 rounded-lg mr-3 group-hover:bg-slate-600 transition-colors">
                                     <HelpCircle className="w-5 h-5" />
                                 </div>
                                 Quiz de Fixação
                             </button>
 
-                            <Link href="/simulador" className="w-full p-4 rounded-xl flex items-center bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 text-blue-400 font-bold transition-all group mt-4 block text-left">
+                            <Link href="/simulador" className="w-full p-4 rounded-xl flex items-center bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 text-blue-400 font-bold transition-all group block text-left">
                                 <div className="p-1.5 bg-blue-500/20 rounded-lg mr-3">
-                                    <Target className="w-5 h-5 text-blue-400" />
+                                    <svg className="w-5 h-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>
                                 </div>
-                                Simular Tesouro Selic
+                                Simular no Calculador
                             </Link>
                         </div>
 
-                        <button
-                            className={`w-full py-4 mt-8 rounded-xl font-bold text-white transition-all ${completed
-                                    ? "bg-gradient-to-r from-emerald-500 to-emerald-600 hover:shadow-lg hover:shadow-emerald-500/25"
-                                    : "bg-slate-800 text-slate-500 cursor-not-allowed"
-                                }`}
-                        >
-                            Próxima Aula: Tesouro IPCA+
-                        </button>
+                        {/* Lesson List for current Trilha */}
+                        <div className="border-t border-slate-800 pt-4">
+                            <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Aulas desta Trilha</h4>
+                            <div className="space-y-2">
+                                {trilhaLessons.map((lesson) => (
+                                    <Link
+                                        key={lesson.id}
+                                        href={`/trilhas?aula=${lesson.id}`}
+                                        className={`flex items-center p-3 rounded-xl text-sm transition-all ${
+                                            lesson.id === currentLesson.id
+                                                ? `${colors.bg} ${colors.text} ${colors.border} border font-bold`
+                                                : "text-slate-400 hover:bg-slate-800/50 hover:text-slate-200"
+                                        }`}
+                                    >
+                                        <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-black mr-3 shrink-0 ${
+                                            lesson.id === currentLesson.id
+                                                ? `${colors.bg} ${colors.text}`
+                                                : "bg-slate-800 text-slate-500"
+                                        }`}>
+                                            {lesson.id}
+                                        </span>
+                                        <span className="truncate">{lesson.title.replace(/^\d+\.\d+ /, '')}</span>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Next Lesson Button */}
+                        {currentLesson.nextLessonId && (
+                            <Link
+                                href={`/trilhas?aula=${currentLesson.nextLessonId}`}
+                                onClick={() => setCompleted(false)}
+                                className={`w-full py-4 mt-6 rounded-xl font-bold text-white transition-all text-center block ${completed
+                                        ? "bg-gradient-to-r from-emerald-500 to-emerald-600 hover:shadow-lg hover:shadow-emerald-500/25"
+                                        : "bg-slate-800 text-slate-500 cursor-not-allowed pointer-events-none"
+                                    }`}
+                            >
+                                <span className="flex items-center justify-center">
+                                    Próxima Aula: {currentLesson.nextLessonTitle}
+                                    <ChevronRight className="w-5 h-5 ml-1" />
+                                </span>
+                            </Link>
+                        )}
+
+                        {!currentLesson.nextLessonId && (
+                            <Link
+                                href="/dashboard"
+                                className="w-full py-4 mt-6 rounded-xl font-bold text-white transition-all text-center block bg-gradient-to-r from-emerald-500 to-emerald-600 hover:shadow-lg hover:shadow-emerald-500/25"
+                            >
+                                🎉 Trilha Concluída! Voltar ao Dashboard
+                            </Link>
+                        )}
                     </div>
                 </div>
             </main>
         </div>
     );
-}
-
-// Just an icon import fix
-function Target(props: any) {
-    return <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>;
 }
