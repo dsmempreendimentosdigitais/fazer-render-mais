@@ -6,6 +6,7 @@ import { Check, ShieldCheck, CreditCard, Smartphone, Loader2, Star, BookOpen, Bo
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Logo from "@/components/ui/Logo";
 
 export default function Planos() {
     const { data: session, status } = useSession();
@@ -76,6 +77,8 @@ export default function Planos() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none"></div>
 
             <div className="max-w-5xl mx-auto py-12 relative z-10 flex flex-col items-center">
+                
+                <Logo size="xl" className="mb-8" />
 
                 <header className="mb-12 text-center max-w-2xl">
                     <span className="text-emerald-400 font-bold uppercase tracking-widest text-xs mb-3 block">Elevando o seu nível</span>

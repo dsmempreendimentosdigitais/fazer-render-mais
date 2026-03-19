@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { PlayCircle, Award, CheckCircle2, ChevronLeft, Map, HelpCircle } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import Logo from "@/components/ui/Logo";
 
 const lessonData = {
     title: "1.3 Tesouro Selic: O melhor amigo da reserva de emergência",
@@ -23,6 +24,10 @@ export default function LessonPlayer() {
                     <ChevronLeft className="w-5 h-5 mr-1" />
                     <span className="font-medium">Voltar para Trilha 1</span>
                 </Link>
+
+                <div className="hidden sm:block">
+                    <Logo size="md" />
+                </div>
 
                 <div className="flex items-center space-x-4">
                     <div className="flex items-center text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full text-sm font-bold border border-amber-400/20">

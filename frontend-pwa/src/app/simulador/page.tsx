@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { DollarSign, Percent, Calendar, TrendingUp, AlertTriangle, Lock, Star, Target, Loader2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { DollarSign, Percent, Calendar, TrendingUp, Calculator, ArrowRight, Lock, Info, CheckCircle2, ChevronRight, HelpCircle, AlertTriangle, Star, Loader2, Target } from "lucide-react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Logo from "@/components/ui/Logo";
 
 export default function Simulator() {
     const { data: session, status } = useSession();
@@ -72,11 +73,11 @@ export default function Simulator() {
 
     // Novas Simulações Avançadas (Média dos últimos 10 anos representativa para didática)
     const plusRate = 12.5; // Histórico médio de Renda Fixa + FIIs
-    const arcaRate = 14.8; // Metodologia ARCA (Thiago Nigro) / All-Weather
+    const g4pRate = 14.8; // Estratégia 4 Pilares (Global) / All-Weather
     const barsiRate = 16.5; // Carteira Previdenciária Método Barsi (Ações Dividendos e FIIs)
 
     const plusResult = calculateCompoundInterest(initialAmount, monthlyContribution, plusRate, years);
-    const arcaResult = calculateCompoundInterest(initialAmount, monthlyContribution, arcaRate, years);
+    const g4pResult = calculateCompoundInterest(initialAmount, monthlyContribution, g4pRate, years);
     const barsiResult = calculateCompoundInterest(initialAmount, monthlyContribution, barsiRate, years);
 
     const totalInvested = initialAmount + (monthlyContribution * years * 12);
@@ -99,7 +100,12 @@ export default function Simulator() {
 
     return (
         <div className="min-h-screen bg-[#0f172a] text-slate-50 p-6 font-sans antialiased overflow-x-hidden">
-            <div className="max-w-6xl mx-auto py-10 flex flex-col xl:flex-row gap-10">
+            <div className="max-w-6xl mx-auto py-10">
+                <div className="flex justify-start mb-8">
+                    <Logo size="lg" />
+                </div>
+                
+                <div className="flex flex-col xl:flex-row gap-10">
 
                 {/* Left Col: Controls */}
                 <div className="w-full xl:w-96 flex-shrink-0 space-y-8">
@@ -291,21 +297,21 @@ export default function Simulator() {
                         </div>
                     </div> {/* End Scenario 2 */}
 
-                    {/* SCENARIO 3: Metodologia ARCA (PREMIUM) */}
+                    {/* SCENARIO 3: Estratégia 4 Pilares (PREMIUM) */}
                     <div className="mb-6 border-t border-slate-800/80 pt-10 relative">
                         {!isPremium && (
                             <Link href="/planos" className="absolute inset-0 z-20 bg-[#0f172a]/70 backdrop-blur-md flex flex-col items-center justify-center p-6 border border-emerald-500/30 rounded-3xl cursor-pointer hover:bg-[#0f172a]/80 transition group pt-16">
                                 <div className="bg-emerald-500/10 p-4 rounded-full mb-4 group-hover:scale-110 transition border border-emerald-500/30">
                                     <Lock className="w-8 h-8 text-emerald-400" />
                                 </div>
-                                <h3 className="text-2xl font-black text-slate-100 mb-2">Desbloqueie a Carteira ARCA (PREMIUM)</h3>
-                                <p className="text-sm text-slate-300 mt-2 max-w-lg text-center leading-relaxed">Simule a blindagem patrimonial ensinada por Thiago Nigro: 4 fatias iguais e diversificadas rendendo historicamente 14,8% a.a para te proteger do Risco Brasil.</p>
+                                <h3 className="text-2xl font-black text-slate-100 mb-2">Desbloqueie a Estratégia 4 Pilares (PREMIUM)</h3>
+                                <p className="text-sm text-slate-300 mt-2 max-w-lg text-center leading-relaxed">Simule a blindagem patrimonial com 4 fatias iguais e diversificadas rendendo historicamente 14,8% a.a para te proteger de crises e oscilações do mercado.</p>
                                 <button className="mt-6 bg-emerald-500 hover:bg-emerald-400 text-slate-900 px-8 py-3 rounded-xl font-bold text-sm transition">Fazer Upgrade Especialista</button>
                             </Link>
                         )}
                         <h2 className="text-xl font-bold text-emerald-400 mb-4 flex items-center">
                             <TrendingUp className="w-5 h-5 mr-2" />
-                            Cenário 3: Metodologia ARCA (Thiago Nigro / Ray Dalio)
+                            Cenário 3: Estratégia Global de 4 Pilares (G4P)
                         </h2>
                         <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 xl:gap-6 flex-1 ${!isPremium ? 'opacity-30 pointer-events-none filter blur-[4px]' : ''}`}>
                             <div className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] border border-emerald-500/50 p-6 xl:p-8 rounded-3xl relative flex flex-col h-full justify-between shadow-xl shadow-emerald-500/10">
@@ -313,9 +319,9 @@ export default function Simulator() {
                                     <span className="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-emerald-500/30 line-clamp-1">
                                         Histórico: 14.8% a.a
                                     </span>
-                                    <h3 className="text-3xl xl:text-4xl font-black mt-6 mb-2 text-white tracking-tighter truncate" title={formatCurrency(arcaResult)}>{formatCurrency(arcaResult)}</h3>
+                                    <h3 className="text-3xl xl:text-4xl font-black mt-6 mb-2 text-white tracking-tighter truncate" title={formatCurrency(g4pResult)}>{formatCurrency(g4pResult)}</h3>
                                     <p className="text-emerald-400 font-bold text-sm">
-                                        + {formatCurrency(arcaResult - plusResult)} se comparado à Carteira PLUS.
+                                        + {formatCurrency(g4pResult - plusResult)} se comparado à Carteira PLUS.
                                     </p>
                                 </div>
                                 <p className="text-slate-300 text-sm leading-relaxed mt-8">
@@ -356,7 +362,7 @@ export default function Simulator() {
                                     </span>
                                     <h3 className="text-3xl xl:text-4xl font-black mt-6 mb-2 text-white tracking-tighter truncate" title={formatCurrency(barsiResult)}>{formatCurrency(barsiResult)}</h3>
                                     <p className="text-rose-400 font-bold text-sm">
-                                        + {formatCurrency(barsiResult - arcaResult)} se comparado à Carteira ARCA.
+                                        + {formatCurrency(barsiResult - g4pResult)} se comparado à Estratégia 4 Pilares.
                                     </p>
                                 </div>
                                 <p className="text-slate-300 text-sm leading-relaxed mt-8">
@@ -371,7 +377,7 @@ export default function Simulator() {
                             </div>
                         </div>
                     </div> {/* End Scenario 4 */}
-
+                    </div>
                 </div>
             </div>
         </div>
