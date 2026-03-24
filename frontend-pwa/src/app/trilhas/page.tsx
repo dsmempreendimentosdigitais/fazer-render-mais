@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Logo from "@/components/ui/Logo";
+import QuizModal from "@/components/trilhas/QuizModal";
 
 // ── Lesson Data ──────────────────────────────────────────────────────
 interface Lesson {
@@ -173,6 +174,7 @@ function LessonPlayer() {
     const currentLesson = lessons[aulaParam] || lessons["1.1"];
 
     const [completed, setCompleted] = useState(false);
+    const [isQuizOpen, setIsQuizOpen] = useState(false);
 
     // Get all lessons for the current trilha for the sidebar
     const trilhaLessons = Object.values(lessons).filter(l => l.trilha === currentLesson.trilha);
@@ -283,7 +285,10 @@ function LessonPlayer() {
                                 {completed && <span className="text-xs font-extrabold bg-emerald-500/20 px-2 py-1 rounded-md">+10 Coins</span>}
                             </button>
 
-                            <button className="w-full p-4 rounded-xl flex items-center bg-slate-800/50 border border-slate-700 hover:bg-slate-800 text-slate-300 font-bold transition-all group">
+                            <button 
+                                onClick={() => setIsQuizOpen(true)}
+                                className="w-full p-4 rounded-xl flex items-center bg-slate-800/50 border border-slate-700 hover:bg-slate-800 text-slate-300 font-bold transition-all group"
+                            >
                                 <div className="p-1.5 bg-slate-700 rounded-lg mr-3 group-hover:bg-slate-600 transition-colors">
                                     <HelpCircle className="w-5 h-5" />
                                 </div>
@@ -364,6 +369,12 @@ function LessonPlayer() {
                     </div>
                 </div>
             </main>
+
+            <QuizModal 
+                isOpen={isQuizOpen} 
+                onClose={() => setIsQuizOpen(false)} 
+                trilhaId={currentLesson.trilha} 
+            />
         </div>
     );
 }
